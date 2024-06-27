@@ -57,7 +57,8 @@
   /* solid */
 
   --jet: hsl(0, 0%, 22%);
-  --onyx: hsla(246, 63%, 19%, 0.717);
+  --onyx: hsla(246, 30%, 25%, 0.717);
+  --onyx2: hsla(0, 75%, 51%, 0.717);
   --eerie-black-1: hsl(240, 2%, 13%);
   --eerie-black-2: hsl(240, 2%, 12%);
   --smoky-black: hsl(0, 0%, 7%);
@@ -348,6 +349,16 @@ main {
 .info-content .title {
   color: var(--white-1);
   background: var(--onyx);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-300);
+  width: max-content;
+  padding: 3px 12px;
+  border-radius: 8px;
+}
+
+.info-content .title2 {
+  color: var(--white-1);
+  background: var(--onyx2);
   font-size: var(--fs-8);
   font-weight: var(--fw-300);
   width: max-content;
@@ -1353,6 +1364,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   .info-content .name { margin-bottom: 15px; }
 
   .info-content .title { padding: 5px 18px; }
+  .info-content .title2 { padding: 5px 18px; }
 
   .info_more-btn {
     top: -30px;
@@ -1852,6 +1864,8 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .info-content .title { margin: auto; }
+
+  .info-content .title2 { margin: auto; }
 
   .info_more-btn { display: none; }
 
