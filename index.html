@@ -2,13 +2,13 @@
 <html lang="fr" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <title>Ali El Bahaï | Data Scientist & AI Engineer</title>
+  <title>Ali El Baha | Data Scientist & AI Engineer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ali El Bahaï — Élève-ingénieur en Data Science. Expertise en modélisation prédictive, Deep Learning, LLMs et IA agentique.">
-  <meta name="keywords" content="data scientist, AI engineer, deep learning, LLM, RAG, machine learning, Python, PyTorch, Ali El Bahaï">
-  <meta name="author" content="Ali El Bahaï">
-  <meta property="og:title" content="Ali El Bahaï - Data Scientist & AI Engineer">
-  <meta property="og:description" content="Portfolio d'Ali El Bahaï, Élève-ingénieur en Data Science. Expert en modélisation prédictive, LLMs et IA agentique.">
+  <meta name="description" content="Ali El Baha — Élève-ingénieur en Data Science. Expertise en modélisation prédictive, Deep Learning, LLMs et IA agentique.">
+  <meta name="keywords" content="data scientist, AI engineer, deep learning, LLM, RAG, machine learning, Python, PyTorch, Ali El Baha">
+  <meta name="author" content="Ali El Baha">
+  <meta property="og:title" content="Ali El Baha - Data Scientist & AI Engineer">
+  <meta property="og:description" content="Portfolio d'Ali El Baha, Élève-ingénieur en Data Science. Expert en modélisation prédictive, LLMs et IA agentique.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="robots" content="index,follow">
@@ -24,10 +24,11 @@
       --color-accent-soft: rgba(200, 96, 42, 0.15);
     }
     [data-theme="dark"] {
-      --color-bg: #0f0d0a;
+      --color-bg: #1f1912;
       --color-bg-alt: #1c1813;
       --color-text: #e8e0d4;
       --color-accent: #e07a44;
+      --color-accent2: #ff3700;
       --color-accent-soft: rgba(224, 122, 68, 0.15);
     }
 
@@ -53,8 +54,8 @@
     .particle {
       position: absolute;
       border-radius: 50%;
-      background: var(--color-accent);
-      opacity: 0.15;
+      background: var(--color-accent2);
+      opacity: 0.9;
       animation: float linear infinite;
     }
     @keyframes float {
@@ -132,14 +133,63 @@
     #hero {
       position: relative;
       text-align: center;
+      min-height: 100vh;
+      overflow: hidden;
     }
-    #hero::before {
-      content: '';
+
+    /* Hero image layer — sits behind content, animates on scroll */
+#hero-image {
+  position: absolute;
+  top: -0%;
+  left: 0;
+  width: 100%;
+  height: 99%; /* Remplace "inset: -10% 0" pour régler le bug de taille */
+  
+  background-image: url('./FINAL.jpg');
+  background-size: cover;
+  background-position: center;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  
+  z-index: 0; /* On le force à passer TOUT DEVANT pour le test */
+  opacity: 2;
+}
+    
+
+    /* Multi-stop overlay: solid dark at bottom, semi-dark at top for text */
+    #hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(6, 6, 6, 0) 0%,
+          rgba(11, 11, 11, 0.155) 40%,
+          rgba(31, 25, 18, 0.632) 80%,
+          rgb(31, 25, 18) 100%
+        );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Accent radial glow on top of image */
+    #hero-glow {
       position: absolute;
       inset: 0;
       background: radial-gradient(ellipse 60% 50% at 60% 30%, var(--color-accent-soft) 0%, transparent 70%);
       pointer-events: none;
+      z-index: 2;
     }
+
+    /* Content must sit above the image layers */
+    .hero-content {
+        position: relative;
+        z-index: 3;
+        width: 100%; /* S'assure que le contenu reste bien centré */
+        transform: translateY(220px);
+    }
+
+    /* Scroll-cue chevronz */
     .hero-name {
       font-size: clamp(2.2rem, 6vw, 4.5rem);
       font-weight: 400;
@@ -171,7 +221,8 @@
       justify-content: center;
       flex-wrap: wrap;
       animation: fadeUp 0.8s 0.3s ease both;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
+      margin-top: -50px;
     }
     .hero-link {
       display: flex;
@@ -182,8 +233,9 @@
       border-radius: 2rem;
       text-decoration: none;
       color: var(--color-text);
-      font-size: 0.85rem;
+      font-size: 0.90rem;
       font-family: 'Courier New', monospace;
+      font-weight: 550;
       transition: all 0.25s;
       background: transparent;
     }
@@ -385,6 +437,7 @@
     .timeline-tag {
       font-family: 'Courier New', monospace;
       font-size: 0.68rem;
+      font-weight: 600;
       padding: 0.15rem 0.5rem;
       background: var(--color-accent-soft);
       color: var(--color-accent);
@@ -534,7 +587,7 @@
 
   <!-- Nav -->
   <nav>
-    <a href="#hero">~/</a>
+    <a href="#hero">Home</a>
     <a href="#about">about</a>
     <a href="#formation">formation</a>
     <a href="#parcours">parcours</a>
@@ -544,11 +597,20 @@
 
   <!-- ═══════════════════════════════════════════ HERO ═══ -->
   <section id="hero">
-    <div>
-      <h1 class="hero-name">Ali El Bahaï</h1>
-      <p class="hero-title">Data Scientist &amp; AI Engineer</p>
+    <div id="hero-image" aria-hidden="true"></div>
+    <div id="hero-overlay" aria-hidden="true"></div>
+    <div id="hero-glow" aria-hidden="true"></div>
+    <div class="hero-content">
+      <h1 class="hero-name">Ali El Baha</h1>
 
-      <div class="hero-links">
+      
+    <!-- Scroll cue -->
+    
+  </section>
+
+  <!-- ═══════════════════════════════════════════ ABOUT ═══ -->
+  <section id="about">
+    <div class="hero-links">
         <a href="mailto:ali.elbaha@hotmail.com" class="hero-link">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -556,13 +618,13 @@
           </svg>
           ali.elbaha@hotmail.com
         </a>
-        <a href="tel:+33756927563" class="hero-link">
+        <a href="tel:+33 6 05 73 95 44" class="hero-link">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.1 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
           </svg>
-          +33 756 927 563
+          +33 6 05 73 95 44
         </a>
-        <a href="#" class="hero-link" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/alielbaha/" class="hero-link" title="LinkedIn">
           <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11.75 20h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.783 1.75-1.75 1.75zm13.25 12.268h-3v-5.604c0-1.337-.026-3.063-1.865-3.063-1.865 0-2.151 1.455-2.151 2.961v5.706h-3v-11h2.885v1.5h.041c.402-.761 1.382-1.563 2.845-1.563 3.041 0 3.604 2.002 3.604 4.604v6.459z"/>
           </svg>
@@ -583,12 +645,9 @@
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ═══════════════════════════════════════════ ABOUT ═══ -->
-  <section id="about">
     <div class="section-inner">
-      <h2 class="section-title reveal">À propos<span class="accent">.</span></h2>
+      &nbsp; &nbsp; <h2 class="section-title reveal">À propos<span class="accent">.</span></h2> 
       <div class="about-grid">
         <div class="about-left reveal">
           <h2>Modéliser<span style="color:var(--color-accent)">.</span><br>Prédire<span style="color:var(--color-accent)">.</span><br>Déployer<span style="color:var(--color-accent)">.</span></h2>
@@ -627,197 +686,297 @@
     <div class="section-inner">
       <h2 class="section-title reveal">Formation<span class="accent">.</span></h2>
       <div class="formation-grid">
+
+        <div class="formation-card reveal">
+          <div class="formation-school">Classes Préparatoires MP</div>
+          <div class="formation-degree">POST-BAC SCIENTIFIQUE</div>
+          <div class="formation-period">2020 – 2022 • Khouribga, Maroc</div>
+          <div class="formation-detail">Programme intensif en mathématiques et physique avancées, préparation aux concours des Grandes Écoles.</div>
+        </div>
         <div class="formation-card reveal">
           <div class="formation-school">Centrale Casablanca</div>
           <div class="formation-degree">DIPLÔME D'INGÉNIEUR</div>
           <div class="formation-period">2022 – 2026 • Casablanca, Maroc</div>
           <div class="formation-detail">Mathématiques Appliquées, Méthodes Numériques, Statistiques, Optimisation, Machine Learning, Physique Statistique.</div>
         </div>
+        
         <div class="formation-card reveal">
           <div class="formation-school">CentraleSupélec</div>
           <div class="formation-degree">PROGRAMME D'ÉCHANGE</div>
           <div class="formation-period">2023 – 2024 • Paris, France</div>
           <div class="formation-detail">Optimisation Stochastique, Statistiques avancées, Deep Learning, Traitement d'image.</div>
         </div>
-        <div class="formation-card reveal">
-          <div class="formation-school">CPGE — Classes Préparatoires MP</div>
-          <div class="formation-degree">POST-BAC SCIENTIFIQUE</div>
-          <div class="formation-period">2020 – 2022 • Khouribga, Maroc</div>
-          <div class="formation-detail">Programme intensif en mathématiques et physique avancées, préparation aux concours des Grandes Écoles.</div>
-        </div>
+        
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════ PARCOURS ═══ -->
-  <section id="parcours">
-    <div class="section-inner">
-      <h2 class="section-title reveal">Expériences &amp; Projets<span class="accent">.</span></h2>
-      <div class="timeline">
+<section id="parcours">
+  <div class="section-inner">
 
-        <!-- Louis Dreyfus Armateurs -->
-        <div class="timeline-item left reveal">
-          <div class="timeline-left">
-            <div class="timeline-card">
-              <div class="timeline-period">AVRI → SEPT 2025</div>
-              <div class="timeline-company">Louis Dreyfus Armateurs</div>
-              <div class="timeline-role">Consultant IA</div>
-              <div class="timeline-tags">
-                <span class="timeline-tag">RAG</span>
-                <span class="timeline-tag">Anomaly Detection</span>
-                <span class="timeline-tag">LLM</span>
-                <span class="timeline-tag">MLOps</span>
-              </div>
-              <div class="timeline-desc">Identification des cas d'usage IA critiques (RAG maintenance, détection d'anomalies). Livraison d'un MVP évitant des pannes coûteuses à 850 000 €/incident. Mise en production d'un chatbot RAG pour les marins.</div>
+    <h2 class="section-title reveal">
+      Expériences<span class="accent">.</span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Projets<span class="accent">.</span>
+    </h2>
+
+    <div class="timeline">
+
+      <!-- Inwi -->
+      <div class="timeline-item left reveal">
+
+        <div class="timeline-left">
+          <div class="timeline-card">
+            <div class="timeline-period">JAN. 2026</div>
+            <div class="timeline-company">Inwi</div>
+            <div class="timeline-role">Segmentation Client &amp; Stratégie CVM</div>
+
+            <div class="timeline-tags">
+              <span class="timeline-tag">Scikit-learn</span>
+              <span class="timeline-tag">Clustering</span>
+              <span class="timeline-tag">CRM</span>
+              <span class="timeline-tag">Pandas</span>
             </div>
-          </div>
-          <div class="timeline-rail"><div class="timeline-dot"></div></div>
-          <div class="timeline-right" style="visibility:hidden"></div>
-        </div>
 
-        <!-- Société Générale -->
-        <div class="timeline-item right reveal">
-          <div class="timeline-left" style="visibility:hidden"></div>
-          <div class="timeline-rail"><div class="timeline-dot"></div></div>
-          <div class="timeline-right">
-            <div class="timeline-card">
-              <div class="timeline-period">OCT. 2024 → AVRI. 2025</div>
-              <div class="timeline-company">Société Générale</div>
-              <div class="timeline-role">Data Scientist</div>
-              <div class="timeline-tags">
-                <span class="timeline-tag">Deep Learning</span>
-                <span class="timeline-tag">NLP</span>
-                <span class="timeline-tag">Fuzzy Matching</span>
-                <span class="timeline-tag">Screen Scanning</span>
-              </div>
-              <div class="timeline-desc">Revue complète des algorithmes de fuzzy matching et transcription phonétique. Amélioration des protocoles de revue pour les modèles de Screen Scanning. Identification de cas limites critiques en production.</div>
+            <div class="timeline-desc">
+              Segmentation comportementale de +100 000 clients prépayés.
+              Caractérisation par personas métier. Plan d'activation CVM ciblé :
+              fidélisation, upsell, rétention.
             </div>
           </div>
         </div>
 
-        <!-- Projet: Système multi-agents -->
-        <div class="timeline-item left reveal">
-          <div class="timeline-left">
-            <div class="timeline-card">
-              <div class="timeline-period">NOV. 2025</div>
-              <div class="timeline-company">Projet Personnel</div>
-              <div class="timeline-role">Système Multi-Agents (IA Agentique)</div>
-              <div class="timeline-tags">
-                <span class="timeline-tag">LangGraph</span>
-                <span class="timeline-tag">LlamaIndex</span>
-                <span class="timeline-tag">Yfinance API</span>
-                <span class="timeline-tag">Streamlit</span>
-              </div>
-              <div class="timeline-desc">Système d'investissement multi-agents avec recommandations boursières personnalisées. 4 profils d'investisseurs, analyse ESG/risque/stratégique, tableau de bord Streamlit explicable (SHAP/LIME).</div>
-            </div>
-          </div>
-          <div class="timeline-rail"><div class="timeline-dot"></div></div>
-          <div class="timeline-right" style="visibility:hidden"></div>
+        <div class="timeline-rail">
+          <div class="timeline-dot"></div>
         </div>
 
-        <!-- Projet: RAG Agent -->
-        <div class="timeline-item right reveal">
-          <div class="timeline-left" style="visibility:hidden"></div>
-          <div class="timeline-rail"><div class="timeline-dot"></div></div>
-          <div class="timeline-right">
-            <div class="timeline-card">
-              <div class="timeline-period">AVR. 2025</div>
-              <div class="timeline-company">Projet Personnel</div>
-              <div class="timeline-role">Agent IA RAG-based</div>
-              <div class="timeline-tags">
-                <span class="timeline-tag">RAG</span>
-                <span class="timeline-tag">LangChain</span>
-                <span class="timeline-tag">FAISS</span>
-                <span class="timeline-tag">MySQL</span>
-              </div>
-              <div class="timeline-desc">Assistant conversationnel RAG analysant des historiques de maintenance. Pipeline ETL automatisé, recherche sémantique via FAISS, interface sécurisée pour interrogation en langage naturel.</div>
-            </div>
-          </div>
+        <div class="timeline-right empty"></div>
+
+      </div>
+
+
+      <!-- Projet: Multi-Agents -->
+      <div class="timeline-item right reveal">
+
+        <div class="timeline-left empty"></div>
+
+        <div class="timeline-rail">
+          <div class="timeline-dot"></div>
         </div>
 
-        <!-- Paris-Saclay -->
-        <div class="timeline-item left reveal">
-          <div class="timeline-left">
-            <div class="timeline-card">
-              <div class="timeline-period">FÉV. → JUIN 2024</div>
-              <div class="timeline-company">Laboratoire de Mécanique Paris-Saclay</div>
-              <div class="timeline-role">Deep Learning Engineer</div>
-              <div class="timeline-tags">
-                <span class="timeline-tag">LSTM</span>
-                <span class="timeline-tag">GAN</span>
-                <span class="timeline-tag">Séries temporelles</span>
-                <span class="timeline-tag">PyTorch</span>
-              </div>
-              <div class="timeline-desc">Étude des architectures RNN/LSTM pour données sismiques. Test du RepGAN. Implémentation d'une approche hybride LSTM+GAN pour prédire la réponse sismique des monuments historiques.</div>
-            </div>
-          </div>
-          <div class="timeline-rail"><div class="timeline-dot"></div></div>
-          <div class="timeline-right" style="visibility:hidden"></div>
-        </div>
+        <div class="timeline-right">
+          <div class="timeline-card">
+            <div class="timeline-period">NOV. 2025</div>
+            <div class="timeline-company">Projet Personnel</div>
+            <div class="timeline-role">Système Multi-Agents (IA Agentique)</div>
 
-        <!-- Segmentation Client -->
-        <div class="timeline-item right reveal">
-          <div class="timeline-left" style="visibility:hidden"></div>
-          <div class="timeline-rail"><div class="timeline-dot"></div></div>
-          <div class="timeline-right">
-            <div class="timeline-card">
-              <div class="timeline-period">JAN. 2026</div>
-              <div class="timeline-company">Projet</div>
-              <div class="timeline-role">Segmentation Client &amp; Stratégie CVM</div>
-              <div class="timeline-tags">
-                <span class="timeline-tag">Scikit-learn</span>
-                <span class="timeline-tag">Clustering</span>
-                <span class="timeline-tag">CRM</span>
-                <span class="timeline-tag">Pandas</span>
-              </div>
-              <div class="timeline-desc">Segmentation comportementale de +100 000 clients prépayés. Caractérisation par personas métier. Plan d'activation CVM ciblé : fidélisation, upsell, rétention.</div>
+            <div class="timeline-tags">
+              <span class="timeline-tag">LangGraph</span>
+              <span class="timeline-tag">LlamaIndex</span>
+              <span class="timeline-tag">Yfinance API</span>
+              <span class="timeline-tag">Streamlit</span>
             </div>
-          </div>
-        </div>
 
-        <!-- NORMA -->
-        <div class="timeline-item left reveal">
-          <div class="timeline-left">
-            <div class="timeline-card">
-              <div class="timeline-period">OCT. 2023 → JAN. 2024</div>
-              <div class="timeline-company">NORMA</div>
-              <div class="timeline-role">Data Scientist</div>
-              <div class="timeline-tags">
-                <span class="timeline-tag">LLM</span>
-                <span class="timeline-tag">RAG</span>
-                <span class="timeline-tag">LangChain</span>
-                <span class="timeline-tag">Fine-tuning</span>
-              </div>
-              <div class="timeline-desc">Développement de "Juridico", assistant juridique IA. Solution RAG avec LLM Falcon adapté aux besoins des chefs d'entreprise et professionnels du droit. Fine-tuning pour interprétation de documents légaux.</div>
-            </div>
-          </div>
-          <div class="timeline-rail"><div class="timeline-dot"></div></div>
-          <div class="timeline-right" style="visibility:hidden"></div>
-        </div>
-
-        <!-- Hackathon Computer Vision -->
-        <div class="timeline-item right reveal">
-          <div class="timeline-left" style="visibility:hidden"></div>
-          <div class="timeline-rail"><div class="timeline-dot"></div></div>
-          <div class="timeline-right">
-            <div class="timeline-card">
-              <div class="timeline-period">DÉC. 2023</div>
-              <div class="timeline-company">Hackathon</div>
-              <div class="timeline-role">Computer Vision Engineer</div>
-              <div class="timeline-tags">
-                <span class="timeline-tag">TensorFlow</span>
-                <span class="timeline-tag">DETR-ResNet-50</span>
-                <span class="timeline-tag">Depth Estimation</span>
-                <span class="timeline-tag">TTS</span>
-              </div>
-              <div class="timeline-desc">Lunettes intelligentes pour malvoyants : détection d'objets temps réel (DETR-ResNet-50), estimation de profondeur (GLPN/NYUv2), description vocale de l'environnement via LLM.</div>
+            <div class="timeline-desc">
+              Système d'investissement multi-agents avec recommandations
+              boursières personnalisées. 4 profils d'investisseurs, analyse
+              ESG/risque/stratégique, tableau de bord Streamlit explicable
+              (SHAP/LIME).
             </div>
           </div>
         </div>
 
       </div>
+
+      <!-- LDA -->
+      <div class="timeline-item left reveal">
+
+        <div class="timeline-left">
+          <div class="timeline-card">
+            <div class="timeline-period">AVR → SEPT 2025</div>
+            <div class="timeline-company">Louis Dreyfus Armateurs</div>
+            <div class="timeline-role">Consultant IA</div>
+
+            <div class="timeline-tags">
+              <span class="timeline-tag">RAG</span>
+              <span class="timeline-tag">Anomaly Detection</span>
+              <span class="timeline-tag">LLM</span>
+              <span class="timeline-tag">MLOps</span>
+            </div>
+
+            <div class="timeline-desc">
+              Identification des cas d'usage IA critiques (RAG maintenance,
+              détection d'anomalies). Livraison d'un MVP évitant des pannes
+              coûteuses à 850 000 €/incident. Mise en production d'un chatbot RAG.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-rail">
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-right empty"></div>
+
+      </div>
+
+      <!-- Project RAG -->
+      <div class="timeline-item right reveal">
+
+        <div class="timeline-left empty"></div>
+
+        <div class="timeline-rail">
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-right">
+          <div class="timeline-card">
+            <div class="timeline-period">AVR. 2025</div>
+            <div class="timeline-company">Projet Personnel</div>
+            <div class="timeline-role">Agent IA RAG-based</div>
+
+            <div class="timeline-tags">
+              <span class="timeline-tag">RAG</span>
+              <span class="timeline-tag">LangChain</span>
+              <span class="timeline-tag">FAISS</span>
+              <span class="timeline-tag">MySQL</span>
+            </div>
+
+            <div class="timeline-desc">
+              Assistant conversationnel RAG analysant des historiques de
+              maintenance. Pipeline ETL automatisé, recherche sémantique via
+              FAISS, interface sécurisée.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Société Générale -->
+      <div class="timeline-item left reveal">
+
+        <div class="timeline-left">
+          <div class="timeline-card">
+            <div class="timeline-period">OCT. 2024 → AVR. 2025</div>
+            <div class="timeline-company">Société Générale</div>
+            <div class="timeline-role">Data Scientist</div>
+
+            <div class="timeline-tags">
+              <span class="timeline-tag">Deep Learning</span>
+              <span class="timeline-tag">NLP</span>
+              <span class="timeline-tag">Fuzzy Matching</span>
+              <span class="timeline-tag">Screen Scanning</span>
+            </div>
+
+            <div class="timeline-desc">
+              Amélioration des algorithmes de fuzzy matching et transcription
+              phonétique. Optimisation des modèles de Screen Scanning.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-rail">
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-right empty"></div>
+
+      </div>
+
+      <!-- Paris-Saclay -->
+      <div class="timeline-item left reveal">
+
+        <div class="timeline-left">
+          <div class="timeline-card">
+            <div class="timeline-period">FÉV → JUIN 2024</div>
+            <div class="timeline-company">Laboratoire de Mécanique Paris-Saclay</div>
+            <div class="timeline-role">Deep Learning Engineer</div>
+
+            <div class="timeline-tags">
+              <span class="timeline-tag">LSTM</span>
+              <span class="timeline-tag">GAN</span>
+              <span class="timeline-tag">Séries temporelles</span>
+              <span class="timeline-tag">PyTorch</span>
+            </div>
+
+            <div class="timeline-desc">
+              Étude LSTM/GAN pour données sismiques et prédiction de réponse des structures.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-rail">
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-right empty"></div>
+
+      </div>
+
+      <!-- NORMA -->
+      <div class="timeline-item left reveal">
+
+        <div class="timeline-left">
+          <div class="timeline-card">
+            <div class="timeline-period">OCT. 2023 → JAN. 2024</div>
+            <div class="timeline-company">NORMA</div>
+            <div class="timeline-role">Data Scientist</div>
+
+            <div class="timeline-tags">
+              <span class="timeline-tag">LLM</span>
+              <span class="timeline-tag">RAG</span>
+              <span class="timeline-tag">LangChain</span>
+              <span class="timeline-tag">Fine-tuning</span>
+            </div>
+
+            <div class="timeline-desc">
+              Développement de "Juridico", assistant juridique IA basé RAG.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-rail">
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-right empty"></div>
+
+      </div>
+
+      <!-- Hackathon -->
+      <div class="timeline-item right reveal">
+
+        <div class="timeline-left empty"></div>
+
+        <div class="timeline-rail">
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-right">
+          <div class="timeline-card">
+            <div class="timeline-period">DÉC. 2023</div>
+            <div class="timeline-company">Hackathon</div>
+            <div class="timeline-role">Computer Vision Engineer</div>
+
+            <div class="timeline-tags">
+              <span class="timeline-tag">TensorFlow</span>
+              <span class="timeline-tag">DETR</span>
+              <span class="timeline-tag">Depth Estimation</span>
+              <span class="timeline-tag">TTS</span>
+            </div>
+
+            <div class="timeline-desc">
+              Lunettes intelligentes pour malvoyants avec détection et assistance vocale.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ═══════════════════════════════════════════ CERTIFICATIONS ═══ -->
   <section id="certifications">
@@ -879,7 +1038,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2026 <span>Ali El Bahaï</span> · Data Scientist &amp; AI Engineer · ali.elbaha@hotmail.com</p>
+    <p>© 2026 <span>Ali El Baha</span> · Data Scientist &amp; AI Engineer · ali.elbaha@hotmail.com</p>
   </footer>
 
   <script>
@@ -889,7 +1048,7 @@
       for (let i = 0; i < 60; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
-        const size = Math.random() * 3 + 1;
+        const size = Math.random() * 4 + 2;
         p.style.cssText = `
           width:${size}px; height:${size}px;
           left:${Math.random()*100}%;
