@@ -17,15 +17,17 @@
   <style>
     /* ── CSS Variables ── */
     :root {
-      --color-bg: #f8f6f0;
-      --color-bg-alt: #ede9df;
-      --color-text: #1a1612;
-      --color-accent: #c8602a;
-      --color-accent-soft: rgba(200, 96, 42, 0.15);
+      --color-bg: #1f1912;
+      --color-bg-alt: #1c1813;
+      --color-text: #e8e0d4;
+      --color-accent: #e07a44;
+      --color-accent2: #ff3700;
+      --color-accent-soft: rgba(224, 122, 68, 0.15);
     }
     [data-theme="dark"] {
       --color-bg: #1f1912;
-      --color-bg-alt: #1c1813;
+      --color-bg-alt: #1c1319;
+      --color-bg-alt2: #ffb25914;
       --color-text: #e8e0d4;
       --color-accent: #e07a44;
       --color-accent2: #ff3700;
@@ -145,7 +147,7 @@
   width: 100%;
   height: 99%; /* Remplace "inset: -10% 0" pour régler le bug de taille */
   
-  background-image: url('./FINAL.jpg');
+  background-image: url('./');
   background-size: cover;
   background-position: center;
   transform-origin: center center;
@@ -194,12 +196,12 @@
       font-size: clamp(2.2rem, 6vw, 4.5rem);
       font-weight: 400;
       letter-spacing: -0.02em;
-      line-height: 1.1;
+      line-height: 0.8;
       background: linear-gradient(135deg, var(--color-text) 40%, var(--color-accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 0.5rem;
+      margin-bottom: 25.5rem;
       animation: fadeUp 0.8s ease both;
     }
     .hero-title {
@@ -221,7 +223,7 @@
       justify-content: center;
       flex-wrap: wrap;
       animation: fadeUp 0.8s 0.3s ease both;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
       margin-top: -50px;
     }
     .hero-link {
@@ -406,11 +408,26 @@
       transition: all 0.25s;
       cursor: default;
     }
+
+    .timeline-card_projects {
+      background: var(--color-bg-alt2);
+      border: 1px solid transparent;
+      border-radius: 0.75rem;
+      padding: 1.1rem 1.3rem;
+      transition: all 0.25s;
+      cursor: default;
+    }
     .timeline-card:hover {
       border-color: var(--color-accent);
       transform: translateY(-2px);
       box-shadow: 0 4px 20px var(--color-accent-soft);
     }
+    .timeline-card_projects:hover {
+      border-color: var(--color-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px var(--color-accent-soft);
+    }
+    
     .timeline-period {
       font-family: 'Courier New', monospace;
       font-size: 0.72rem;
@@ -450,6 +467,8 @@
     }
     .timeline-left .timeline-card { margin-right: 1rem; }
     .timeline-right .timeline-card { margin-left: 1rem; }
+        .timeline-left .timeline-card_projects { margin-right: 1rem; }
+    .timeline-right .timeline-card_projects { margin-left: 1rem; }
     .timeline-item.right .timeline-left { visibility: hidden; }
     .timeline-item.left .timeline-right { visibility: hidden; }
 
@@ -650,7 +669,7 @@
       &nbsp; &nbsp; <h2 class="section-title reveal">À propos<span class="accent">.</span></h2> 
       <div class="about-grid">
         <div class="about-left reveal">
-          <h2>Modéliser<span style="color:var(--color-accent)">.</span><br>Prédire<span style="color:var(--color-accent)">.</span><br>Déployer<span style="color:var(--color-accent)">.</span></h2>
+          <h2>Analyser<span style="color:var(--color-accent)">.</span><br>Modéliser<span style="color:var(--color-accent)">.</span><br>Prédire<span style="color:var(--color-accent)">.</span><br>Déployer<span style="color:var(--color-accent)">.</span></h2>
           <div class="skills-grid">
             <span class="skill-tag">Python</span>
             <span class="skill-tag">PyTorch</span>
@@ -668,10 +687,10 @@
         </div>
         <div class="about-text reveal">
           <p>
-            Élève-ingénieur en Data Science à <span class="about-highlight">Centrale Casablanca</span>, avec une année d'échange à <span class="about-highlight">CentraleSupélec Paris</span>. Je combine rigueur mathématique et sens de l'applicatif pour concevoir des systèmes d'IA robustes et déployables.
+            Élève-ingénieur en Data Science à <span class="about-highlight">Centrale Casablanca</span>, avec une année d'échange à <span class="about-highlight">CentraleSupélec</span>. Je combine rigueur mathématique et sens de l'applicatif pour concevoir des systèmes d'IA <u>fiables</u> et <u>déployables</u>.
           </p>
           <p>
-            Mon domaine de prédilection : <span class="about-highlight">l'IA agentique et les LLMs</span>. J'ai conçu et mis en production des systèmes RAG, des agents multi-modèles et des pipelines d'apprentissage profond dans des contextes industriels exigeants (finance, maritime, énergie).
+            Spécialisé en <span class="about-highlight">IA agentique et deep learning</span>, je conçois et déploie des assistants agentiques ainsi que des modèles de conformité, de détection d’anomalies et de maintenance prédictive. J’interviens dans les secteurs maritime, bancaire, énergétique et de l’innovation, en combinant recherche opérationnelle, industrialisation de l’IA et collaboration avec les équipes métiers pour transformer des enjeux opérationnels en solutions automatisées.
           </p>
           <p>
             Fort d'expériences chez <span class="about-highlight">Société Générale</span>, <span class="about-highlight">Louis Dreyfus Armateurs</span> et au <span class="about-highlight">Laboratoire de Mécanique Paris-Saclay</span>, je recherche un <span class="about-highlight">stage de fin d'études</span> pour mettre mes compétences au service d'enjeux métier concrets.
@@ -722,23 +741,39 @@
     </h2>
 
     <div class="timeline">
+<!-- PFE -->
+      <div class="timeline-item left reveal">
+        <div class="timeline-left">
+          <div class="timeline-card">
+            <div class="timeline-period">AVR. 2026</div>
+            <div class="timeline-company">In Extenso</div>
+            <div class="timeline-role">Consultant en Innovation</div>
+
+            <div class="timeline-desc">
+              Accompagnement des clients dans la d´efinition et la mise en œuvre de strat´egies d’innovation.
+            </div>
+          </div>
+        </div>
+        <div class="timeline-rail">
+          <div class="timeline-dot"></div>
+          
+        </div>
+        <div class="timeline-right empty"></div>
+      </div>
 
       <!-- Inwi -->
       <div class="timeline-item left reveal">
-
         <div class="timeline-left">
           <div class="timeline-card">
             <div class="timeline-period">JAN. 2026</div>
             <div class="timeline-company">Inwi</div>
             <div class="timeline-role">Segmentation Client &amp; Stratégie CVM</div>
-
             <div class="timeline-tags">
               <span class="timeline-tag">Scikit-learn</span>
               <span class="timeline-tag">Clustering</span>
               <span class="timeline-tag">CRM</span>
               <span class="timeline-tag">Pandas</span>
             </div>
-
             <div class="timeline-desc">
               Segmentation comportementale de +100 000 clients prépayés.
               Caractérisation par personas métier. Plan d'activation CVM ciblé :
@@ -746,38 +781,32 @@
             </div>
           </div>
         </div>
-
         <div class="timeline-rail">
           <div class="timeline-dot"></div>
+          <div class="timeline-year">2026</div>
+      
         </div>
-
         <div class="timeline-right empty"></div>
-
       </div>
-
 
       <!-- Projet: Multi-Agents -->
       <div class="timeline-item right reveal">
-
         <div class="timeline-left empty"></div>
-
         <div class="timeline-rail">
           <div class="timeline-dot"></div>
+          
         </div>
-
         <div class="timeline-right">
-          <div class="timeline-card">
+          <div class="timeline-card_projects">
             <div class="timeline-period">NOV. 2025</div>
             <div class="timeline-company">Projet Personnel</div>
             <div class="timeline-role">Système Multi-Agents (IA Agentique)</div>
-
             <div class="timeline-tags">
               <span class="timeline-tag">LangGraph</span>
               <span class="timeline-tag">LlamaIndex</span>
               <span class="timeline-tag">Yfinance API</span>
               <span class="timeline-tag">Streamlit</span>
             </div>
-
             <div class="timeline-desc">
               Système d'investissement multi-agents avec recommandations
               boursières personnalisées. 4 profils d'investisseurs, analyse
@@ -786,25 +815,21 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <!-- LDA -->
       <div class="timeline-item left reveal">
-
         <div class="timeline-left">
           <div class="timeline-card">
             <div class="timeline-period">AVR → SEPT 2025</div>
             <div class="timeline-company">Louis Dreyfus Armateurs</div>
             <div class="timeline-role">Consultant IA</div>
-
             <div class="timeline-tags">
               <span class="timeline-tag">RAG</span>
               <span class="timeline-tag">Anomaly Detection</span>
               <span class="timeline-tag">LLM</span>
               <span class="timeline-tag">MLOps</span>
             </div>
-
             <div class="timeline-desc">
               Identification des cas d'usage IA critiques (RAG maintenance,
               détection d'anomalies). Livraison d'un MVP évitant des pannes
@@ -812,37 +837,30 @@
             </div>
           </div>
         </div>
-
         <div class="timeline-rail">
           <div class="timeline-dot"></div>
         </div>
-
         <div class="timeline-right empty"></div>
-
       </div>
 
       <!-- Project RAG -->
       <div class="timeline-item right reveal">
-
         <div class="timeline-left empty"></div>
-
         <div class="timeline-rail">
           <div class="timeline-dot"></div>
+          
         </div>
-
         <div class="timeline-right">
-          <div class="timeline-card">
+          <div class="timeline-card_projects">
             <div class="timeline-period">AVR. 2025</div>
             <div class="timeline-company">Projet Personnel</div>
             <div class="timeline-role">Agent IA RAG-based</div>
-
             <div class="timeline-tags">
               <span class="timeline-tag">RAG</span>
               <span class="timeline-tag">LangChain</span>
               <span class="timeline-tag">FAISS</span>
               <span class="timeline-tag">MySQL</span>
             </div>
-
             <div class="timeline-desc">
               Assistant conversationnel RAG analysant des historiques de
               maintenance. Pipeline ETL automatisé, recherche sémantique via
@@ -850,128 +868,109 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <!-- Société Générale -->
       <div class="timeline-item left reveal">
-
         <div class="timeline-left">
           <div class="timeline-card">
             <div class="timeline-period">OCT. 2024 → AVR. 2025</div>
             <div class="timeline-company">Société Générale</div>
             <div class="timeline-role">Data Scientist</div>
-
             <div class="timeline-tags">
               <span class="timeline-tag">Deep Learning</span>
               <span class="timeline-tag">NLP</span>
               <span class="timeline-tag">Fuzzy Matching</span>
               <span class="timeline-tag">Screen Scanning</span>
             </div>
-
             <div class="timeline-desc">
               Amélioration des algorithmes de fuzzy matching et transcription
               phonétique. Optimisation des modèles de Screen Scanning.
             </div>
           </div>
         </div>
-
         <div class="timeline-rail">
           <div class="timeline-dot"></div>
+          <div class="timeline-year">2025</div>
+          
         </div>
-
         <div class="timeline-right empty"></div>
-
       </div>
 
       <!-- Paris-Saclay -->
       <div class="timeline-item left reveal">
-
         <div class="timeline-left">
           <div class="timeline-card">
             <div class="timeline-period">FÉV → JUIN 2024</div>
             <div class="timeline-company">Laboratoire de Mécanique Paris-Saclay</div>
             <div class="timeline-role">Deep Learning Engineer</div>
-
             <div class="timeline-tags">
               <span class="timeline-tag">LSTM</span>
               <span class="timeline-tag">GAN</span>
               <span class="timeline-tag">Séries temporelles</span>
               <span class="timeline-tag">PyTorch</span>
             </div>
-
             <div class="timeline-desc">
               Étude LSTM/GAN pour données sismiques et prédiction de réponse des structures.
             </div>
           </div>
         </div>
-
         <div class="timeline-rail">
           <div class="timeline-dot"></div>
+          
         </div>
-
         <div class="timeline-right empty"></div>
-
       </div>
 
       <!-- NORMA -->
       <div class="timeline-item left reveal">
-
         <div class="timeline-left">
           <div class="timeline-card">
             <div class="timeline-period">OCT. 2023 → JAN. 2024</div>
             <div class="timeline-company">NORMA</div>
             <div class="timeline-role">Data Scientist</div>
-
             <div class="timeline-tags">
               <span class="timeline-tag">LLM</span>
               <span class="timeline-tag">RAG</span>
               <span class="timeline-tag">LangChain</span>
               <span class="timeline-tag">Fine-tuning</span>
             </div>
-
             <div class="timeline-desc">
               Développement de "Juridico", assistant juridique IA basé RAG.
             </div>
           </div>
         </div>
-
         <div class="timeline-rail">
           <div class="timeline-dot"></div>
+          <div class="timeline-year">2024</div>
+
         </div>
-
         <div class="timeline-right empty"></div>
-
       </div>
 
       <!-- Hackathon -->
       <div class="timeline-item right reveal">
-
         <div class="timeline-left empty"></div>
-
         <div class="timeline-rail">
           <div class="timeline-dot"></div>
+          <div class="timeline-year">2023</div>
         </div>
-
         <div class="timeline-right">
-          <div class="timeline-card">
+          <div class="timeline-card_projects">
             <div class="timeline-period">DÉC. 2023</div>
             <div class="timeline-company">Hackathon</div>
-            <div class="timeline-role">Computer Vision Engineer</div>
-
+            <div class="timeline-role">Computer Vision & VLLM</div>
             <div class="timeline-tags">
               <span class="timeline-tag">TensorFlow</span>
               <span class="timeline-tag">DETR</span>
               <span class="timeline-tag">Depth Estimation</span>
               <span class="timeline-tag">TTS</span>
             </div>
-
             <div class="timeline-desc">
               Lunettes intelligentes pour malvoyants avec détection et assistance vocale.
             </div>
           </div>
         </div>
-
       </div>
 
     </div>
@@ -984,57 +983,34 @@
       <h2 class="section-title reveal">Certifications<span class="accent">.</span></h2>
       <div class="cert-grid">
         <div class="cert-card reveal">
-          <div class="cert-icon">📋</div>
+          <div class="cert-icon"></div>
           <div class="cert-name">Project Management</div>
           <div class="cert-org">Google</div>
         </div>
         <div class="cert-card reveal">
-          <div class="cert-icon">⚙️</div>
+          <div class="cert-icon"></div>
           <div class="cert-name">Scrum Master</div>
           <div class="cert-org">Certification Scrum</div>
         </div>
         <div class="cert-card reveal">
-          <div class="cert-icon">🏗️</div>
+          <div class="cert-icon"></div>
           <div class="cert-name">Modeling Software Systems using UML</div>
           <div class="cert-org">Hong Kong University of Science and Technology</div>
         </div>
         <div class="cert-card reveal">
-          <div class="cert-icon">🎯</div>
+          <div class="cert-icon"></div>
           <div class="cert-name">Client Needs and Software Requirements</div>
           <div class="cert-org">University of Alberta</div>
         </div>
       </div>
       <div style="margin-top:2rem; text-align:center;" class="reveal">
-        <p style="font-family:'Courier New',monospace; font-size:0.82rem; opacity:0.6;">
-          Langues : Français (DALF C1) · Anglais (TOEIC 920/990) · Arabe (intermédiaire) · Espagnol (débutant)
-        </p>
+       <p style="font-family:'Courier New',monospace; font-size:0.8rem; opacity: 1;">
+  Langues :<span class="accent">  Français (DALF C1)</strong></span> · Anglais (TOEIC 920/990)</strong> · Arabe (intermédiaire) · Espagnol (débutant)
+</p>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════ CONTACT ═══ -->
-  <section id="contact">
-    <div class="section-inner">
-      <h2 class="section-title reveal">Une question<span class="accent"> ?</span> Contactez-moi<span class="accent"> !</span></h2>
-      <div class="contact-card reveal">
-        <form id="contactForm">
-          <div>
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="name" required placeholder="Votre nom">
-          </div>
-          <div>
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required placeholder="votre@email.com">
-          </div>
-          <div>
-            <label for="message">Message :</label>
-            <textarea id="message" name="message" rows="4" required placeholder="Votre message..."></textarea>
-          </div>
-          <button type="submit">Envoyer →</button>
-        </form>
-      </div>
-    </div>
-  </section>
 
   <!-- Footer -->
   <footer>
