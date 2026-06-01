@@ -45,6 +45,41 @@
       overflow-x: hidden;
     }
 
+    /* Large background role title */
+.hero-bg-title {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -75%);
+
+  font-size: clamp(2rem, 4vw, 6rem);
+  font-weight: 700;
+  line-height: -20;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+
+  z-index: -1;
+
+  color: rgba(255, 255, 255, 0.035);
+
+  /* subtle luxury effect */
+  -webkit-text-stroke: 1px rgba(224, 123, 68, 0.6);
+
+  background: linear-gradient(
+    180deg,
+    rgba(224, 123, 68, 0.902),
+    rgba(255, 255, 255, 0.201)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  filter: blur(0.3px);
+}
+
     /* ── Particles background ── */
     #particles-bg {
       position: fixed;
@@ -184,25 +219,29 @@
     }
 
     /* Content must sit above the image layers */
-    .hero-content {
-        position: relative;
-        z-index: 3;
-        width: 100%; /* S'assure que le contenu reste bien centré */
-        transform: translateY(220px);
-    }
+.hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    transform: none;
+}
 
     /* Scroll-cue chevronz */
     .hero-name {
-      font-size: clamp(2.2rem, 6vw, 4.5rem);
-      font-weight: 400;
+      font-size: 0.80rem;
+      height: -100;
+      opacity: 0.01;
+      font-weight: 90;
       letter-spacing: -0.02em;
       line-height: 0.8;
-      background: linear-gradient(135deg, var(--color-text) 40%, var(--color-accent));
+      background: linear-gradient(80deg, var(--color-text) 2%, var(--color-text));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 25.5rem;
-      animation: fadeUp 0.8s ease both;
+      margin-bottom: 10.5rem;
+      animation: fadeUp 1s ease both;
+      position: relative;
+      
     }
     .hero-title {
       font-family: 'Courier New', monospace;
@@ -237,7 +276,7 @@
       color: var(--color-text);
       font-size: 0.90rem;
       font-family: 'Courier New', monospace;
-      font-weight: 550;
+      font-weight: 400;
       transition: all 0.25s;
       background: transparent;
     }
@@ -615,17 +654,37 @@
   </nav>
 
   <!-- ═══════════════════════════════════════════ HERO ═══ -->
-  <section id="hero">
-    <div id="hero-image" aria-hidden="true"></div>
-    <div id="hero-overlay" aria-hidden="true"></div>
-    <div id="hero-glow" aria-hidden="true"></div>
-    <div class="hero-content">
-      <h1 class="hero-name">Ali El Baha</h1>
+<!-- ═══════════════════════════════════════════ HERO ═══ -->
+<section id="hero">
+  <div id="hero-image" aria-hidden="true"></div>
+  <div id="hero-overlay" aria-hidden="true"></div>
+  <div id="hero-glow" aria-hidden="true"></div>
 
-      
-    <!-- Scroll cue -->
-    
-  </section>
+  <div class="hero-content">
+    <div class="hero-bg-title">
+      Forward Deployed Engineer
+    </div>
+
+    <h1 class="hero-name">Ali El Baha</h1>
+
+    <!-- skills.py moved here -->
+      <div class="code-window">
+        <div class="code-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="code-filename">skills.py</span>
+        </div>
+        <div class="code-body">
+          <span id="skill-prompt">&gt;&gt;&gt; </span>
+          <span id="skill-prefix">Je </span><span id="skill-dyn"></span><span id="skill-cursor"></span>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
 
   <!-- ═══════════════════════════════════════════ ABOUT ═══ -->
   <section id="about">
@@ -651,19 +710,7 @@
         </a>
       </div>
 
-      <div class="code-window">
-        <div class="code-header">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot green"></span>
-          <span class="code-filename">skills.py</span>
-        </div>
-        <div class="code-body">
-          <span id="skill-prompt">&gt;&gt;&gt; </span>
-          <span id="skill-prefix">Je </span><span id="skill-dyn"></span><span id="skill-cursor"></span>
-        </div>
-      </div>
-    </div>
+
 
     <div class="section-inner">
       &nbsp; &nbsp; <h2 class="section-title reveal">À propos<span class="accent">.</span></h2> 
@@ -750,7 +797,7 @@
             <div class="timeline-role">Consultant en Innovation</div>
 
             <div class="timeline-desc">
-              Accompagnement des clients dans la d´efinition et la mise en œuvre de strat´egies d’innovation.
+              Accompagnement des clients dans la définition et la mise en œuvre de stratégies d'innovation et le déployement de solutions innovantes.
             </div>
           </div>
         </div>
