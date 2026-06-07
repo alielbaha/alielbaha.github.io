@@ -13,382 +13,594 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#0a0a0a">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+ 
   <style>
     /* ── CSS Variables ── */
     :root {
-      --color-bg: #1f1912;
-      --color-bg-alt: #1c1813;
-      --color-text: #e8e0d4;
-      --color-accent: #e07a44;
-      --color-accent2: #ff3700;
-      --color-accent-soft: rgba(224, 122, 68, 0.15);
+      --primary: #0d0d0d;
+      --secondary: #e85d26;
+      --primary-rgb: 13, 13, 13;
+      --secondary-rgb: 232, 93, 38;
+ 
+      --color-bg: #ecdcc4c7;
+      --color-bg-alt: #ecdcc4c7;
+      --color-bg-alt2: rgba(232, 93, 38, 0.06);
+      --color-text: #0d0d0d;
+      --color-text-muted: rgba(13, 13, 13, 0.5);
+      --color-border: rgba(13, 13, 13, 0.15);
+      --color-accent: #e85d26;
+      --color-accent-soft: rgba(232, 93, 38, 0.12);
+      --color-accent-hover: #c94d1e;
+      --color-surface: rgba(255,255,255,0.7);
+      --color-surface-border: rgba(13,13,13,0.1);
     }
+ 
     [data-theme="dark"] {
-      --color-bg: #1f1912;
-      --color-bg-alt: #1c1319;
-      --color-bg-alt2: #ffb25914;
-      --color-text: #e8e0d4;
-      --color-accent: #e07a44;
-      --color-accent2: #ff3700;
-      --color-accent-soft: rgba(224, 122, 68, 0.15);
+      --primary: #f0ebe4;
+      --secondary: #e85d26;
+      --primary-rgb: 240, 235, 228;
+      --secondary-rgb: 232, 93, 38;
+ 
+      --color-bg: #111009;
+      --color-bg-alt: #1a1812;
+      --color-bg-alt2: rgba(232, 93, 38, 0.08);
+      --color-text: #f0ebe4;
+      --color-text-muted: rgba(240, 235, 228, 0.45);
+      --color-border: rgba(240, 235, 228, 0.1);
+      --color-accent: #e85d26;
+      --color-accent-soft: rgba(232, 93, 38, 0.15);
+      --color-accent-hover: #ff6d35;
+      --color-surface: rgba(26, 24, 18, 0.8);
+      --color-surface-border: rgba(240,235,228,0.08);
     }
-
+ 
     /* ── Reset & Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Georgia', 'Times New Roman', serif;
+      font-family: 'DM Mono', 'Courier New', monospace;
       background-color: var(--color-bg);
       color: var(--color-text);
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color 0.4s, color 0.4s;
       overflow-x: hidden;
     }
-
-    /* Large background role title */
-.hero-bg-title {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -75%);
-
-  font-size: clamp(2rem, 4vw, 6rem);
-  font-weight: 700;
-  line-height: -20;
-  letter-spacing: -0.06em;
-  text-transform: uppercase;
-
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-
-  z-index: -1;
-
-  color: rgba(255, 255, 255, 0.035);
-
-  /* subtle luxury effect */
-  -webkit-text-stroke: 1px rgba(224, 123, 68, 0.231);
-
-  background: linear-gradient(
-    180deg,
-    rgba(167, 118, 91, 0.03),
-    rgba(255, 255, 255, 0.096)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  filter: blur(0.3px);
-}
-
+ 
     /* ── Particles background ── */
     #particles-bg {
       position: fixed;
       inset: 0;
-      z-index: -1;
+      z-index: 0;
       pointer-events: none;
       overflow: hidden;
     }
     .particle {
       position: absolute;
       border-radius: 50%;
-      background: var(--color-accent2);
-      opacity: 0.9;
+      background: var(--color-accent);
       animation: float linear infinite;
     }
     @keyframes float {
       from { transform: translateY(100vh) scale(0); opacity: 0; }
-      10% { opacity: 0.15; }
-      90% { opacity: 0.08; }
+      10% { opacity: 0.18; }
+      90% { opacity: 0.06; }
       to { transform: translateY(-10vh) scale(1); opacity: 0; }
     }
-
+ 
     /* ── Theme toggle ── */
     .theme-toggle {
       position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 100;
+      top: 1.1rem;
+      right: 1.25rem;
+      z-index: 200;
     }
     .theme-toggle input { display: none; }
     .theme-toggle label {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
       cursor: pointer;
-      background: var(--color-bg-alt);
-      border: 1px solid var(--color-accent);
+      background: var(--color-surface);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--color-border);
       border-radius: 2rem;
-      padding: 0.35rem 0.75rem;
-      font-size: 0.8rem;
+      padding: 0.4rem 0.85rem;
+      font-size: 0.72rem;
+      font-family: 'DM Mono', monospace;
       color: var(--color-text);
       transition: all 0.3s;
       user-select: none;
+      letter-spacing: 0.04em;
     }
-    .theme-toggle label:hover { background: var(--color-accent-soft); }
-
+    .theme-toggle label:hover {
+      background: var(--color-accent-soft);
+      border-color: var(--color-accent);
+    }
+    .theme-toggle label svg {
+      transition: opacity 0.3s, transform 0.3s;
+      flex-shrink: 0;
+    }
+    [data-theme="light"] #icon-moon { opacity: 0.4; }
+    [data-theme="dark"] #icon-sun { opacity: 0.4; }
+ 
     /* ── Navigation ── */
     nav {
       position: fixed;
-      top: 1rem;
+      top: 1.1rem;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 99;
+      z-index: 200;
       display: flex;
-      gap: 0.25rem;
-      background: var(--color-bg-alt);
-      border: 1px solid var(--color-accent);
+      gap: 0.1rem;
+      background: var(--color-surface);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--color-border);
       border-radius: 2rem;
-      padding: 0.35rem 0.75rem;
+      padding: 0.35rem 0.6rem;
     }
     nav a {
       text-decoration: none;
-      color: var(--color-text);
-      font-size: 0.78rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 1rem;
-      transition: all 0.2s;
-      font-family: 'Courier New', monospace;
-      letter-spacing: 0.02em;
+      color: var(--color-text-muted);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 1.5rem;
+      transition: all 0.22s;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+      font-weight: 400;
     }
-    nav a:hover { background: var(--color-accent); color: white; }
-
+    nav a:hover {
+      background: var(--color-accent);
+      color: #fff;
+    }
+    nav a.active {
+      background: var(--color-accent-soft);
+      color: var(--color-accent);
+    }
+ 
     /* ── Sections ── */
     section {
+      position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 5rem 1.5rem 3rem;
+      padding: 6rem 1.5rem 4rem;
+      z-index: 1;
     }
     .section-inner {
       max-width: 900px;
       width: 100%;
     }
-
+ 
     /* ── Hero ── */
     #hero {
       position: relative;
       text-align: center;
       min-height: 100vh;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
-
-    /* Hero image layer — sits behind content, animates on scroll */
-#hero-image {
-  position: absolute;
-  top: -0%;
-  left: 0;
-  width: 100%;
-  height: 99%; /* Remplace "inset: -10% 0" pour régler le bug de taille */
-  
-  background-image: url('./');
-  background-size: cover;
-  background-position: center;
-  transform-origin: center center;
-  will-change: transform, opacity;
-  
-  z-index: 0; /* On le force à passer TOUT DEVANT pour le test */
-  opacity: 2;
-}
-    
-
-    /* Multi-stop overlay: solid dark at bottom, semi-dark at top for text */
+ 
+    #hero-image {
+      position: absolute;
+      inset: 0;
+      background-image: url('./');
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+      z-index: 0;
+    }
+ 
     #hero-overlay {
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(6, 6, 6, 0) 0%,
-          rgba(11, 11, 11, 0.155) 40%,
-          rgba(31, 25, 18, 0.632) 80%,
-          rgb(31, 25, 18) 100%
-        );
       z-index: 1;
       pointer-events: none;
     }
-
-    /* Accent radial glow on top of image */
+    [data-theme="light"] #hero-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(245, 242, 238, 0.55) 0%,
+        rgba(245, 242, 238, 0.7) 50%,
+        rgba(245, 242, 238, 0.97) 100%
+      );
+    }
+    [data-theme="dark"] #hero-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(17, 16, 9, 0.3) 0%,
+        rgba(17, 16, 9, 0.5) 50%,
+        rgba(17, 16, 9, 0.97) 100%
+      );
+    }
+ 
     #hero-glow {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 60% 30%, var(--color-accent-soft) 0%, transparent 70%);
+      background: radial-gradient(ellipse 55% 45% at 50% 40%, var(--color-accent-soft) 0%, transparent 70%);
       pointer-events: none;
       z-index: 2;
     }
-
-    /* Content must sit above the image layers */
-.hero-content {
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    transform: none;
-}
-
-    /* Scroll-cue chevronz */
-    .hero-name {
-      font-size: 0.80rem;
-      height: -100;
-      opacity: 0.01;
-      font-weight: 90;
-      letter-spacing: -0.02em;
-      line-height: 0.8;
-      background: linear-gradient(80deg, var(--color-text) 2%, var(--color-text));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 10.5rem;
-      animation: fadeUp 1s ease both;
+ 
+    .hero-content {
       position: relative;
-      
+      z-index: 3;
+      width: 100%;
+      max-width: 640px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem 1.5rem;
     }
-    .hero-title {
-      font-family: 'Courier New', monospace;
-      font-size: clamp(0.85rem, 2vw, 1.1rem);
-      color: var(--color-accent);
-      letter-spacing: 0.15em;
+ 
+    /* Large background role title */
+    .hero-bg-title {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(2.5rem, 6vw, 7rem);
+      font-weight: 500;
+      letter-spacing: -0.04em;
       text-transform: uppercase;
-      animation: fadeUp 0.8s 0.15s ease both;
-      margin-bottom: 2.5rem;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 2;
+      font-family: 'DM Mono', monospace;
+      -webkit-text-stroke: 1px rgba(232, 93, 38, 0.18);
+      color: transparent;
+      opacity: 0.6;
     }
+    [data-theme="dark"] .hero-bg-title {
+      -webkit-text-stroke: 1px rgba(232, 93, 38, 0.22);
+    }
+ 
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      opacity: 0.85;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+ 
+    .hero-name {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      color: var(--color-text);
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+ 
+    .hero-subtitle {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+      color: var(--color-text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+ 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(18px); }
       to { opacity: 1; transform: translateY(0); }
     }
+ 
     .hero-links {
       display: flex;
-      gap: 1rem;
+      gap: 0.75rem;
       justify-content: center;
       flex-wrap: wrap;
-      animation: fadeUp 0.8s 0.3s ease both;
-      margin-bottom: 2.5rem;
-      margin-top: -50px;
+      animation: fadeUp 0.8s 0.4s ease both;
     }
+ 
     .hero-link {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.6rem 1.4rem;
-      border: 1.5px solid var(--color-accent);
+      padding: 0.65rem 1.5rem;
+      border: 1px solid var(--color-border);
       border-radius: 2rem;
       text-decoration: none;
       color: var(--color-text);
-      font-size: 0.90rem;
-      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      font-family: 'DM Mono', monospace;
       font-weight: 400;
-      transition: all 0.25s;
-      background: transparent;
+      letter-spacing: 0.05em;
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+      background: var(--color-surface);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .hero-link:hover {
       background: var(--color-accent);
-      color: white;
+      border-color: var(--color-accent);
+      color: #fff;
       transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232, 93, 38, 0.25);
     }
-
+    .hero-link.primary {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: #fff;
+    }
+    .hero-link.primary:hover {
+      background: var(--color-accent-hover);
+      border-color: var(--color-accent-hover);
+      box-shadow: 0 8px 28px rgba(232, 93, 38, 0.35);
+    }
+ 
     /* ── Code terminal ── */
     .code-window {
       background: var(--color-bg-alt);
-      border: 1px solid var(--color-accent);
-      border-radius: 0.75rem;
+      border: 1px solid var(--color-border);
+      border-radius: 0.65rem;
       overflow: hidden;
-      max-width: 520px;
-      margin: 0 auto;
-      animation: fadeUp 0.8s 0.45s ease both;
+      width: 100%;
+      max-width: 480px;
+      animation: fadeUp 0.8s 0.5s ease both;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    [data-theme="dark"] .code-window {
+      box-shadow: 0 4px 32px rgba(0,0,0,0.35);
     }
     .code-header {
       background: var(--color-bg);
-      padding: 0.5rem 1rem;
+      padding: 0.55rem 1rem;
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      border-bottom: 1px solid var(--color-accent-soft);
+      border-bottom: 1px solid var(--color-border);
     }
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dot.red { background: #ff5f57; }
-    .dot.yellow { background: #febc2e; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .dot.red   { background: #ff5f57; }
+    .dot.yellow{ background: #febc2e; }
     .dot.green { background: #28c840; }
     .code-filename {
       margin-left: 0.5rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.8rem;
-      opacity: 0.6;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      opacity: 0.45;
       color: var(--color-text);
+      letter-spacing: 0.04em;
     }
     .code-body {
-      padding: 1rem 1.25rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
+      padding: 0.9rem 1.1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
       color: var(--color-text);
-      min-height: 2.5rem;
+      min-height: 2.8rem;
+      letter-spacing: 0.02em;
     }
     #skill-prompt { color: var(--color-accent); }
     #skill-cursor {
       display: inline-block;
-      width: 2px;
+      width: 1.5px;
       height: 1em;
       background: var(--color-accent);
       vertical-align: text-bottom;
       animation: blink 1s step-end infinite;
     }
     @keyframes blink { 50% { opacity: 0; } }
-
+ 
+    /* ── Scroll cue ── */
+    .scroll-cue {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.35;
+      animation: fadeUp 1s 1s ease both;
+    }
+    .scroll-cue span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-text);
+    }
+    .scroll-cue svg {
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+ 
     /* ── Section headings ── */
     .section-title {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 400;
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 500;
       margin-bottom: 2.5rem;
       text-align: center;
+      letter-spacing: -0.03em;
     }
     .section-title .accent { color: var(--color-accent); }
-
+ 
+    /* ── Divider ── */
+    .divider {
+      width: 2rem;
+      height: 1.5px;
+      background: var(--color-accent);
+      margin: 0 auto 2rem;
+      opacity: 0.6;
+    }
+ 
     /* ── About ── */
+    #about {
+      background: var(--color-bg-alt);
+    }
     #about .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
+      gap: 4rem;
+      align-items: start;
     }
     @media (max-width: 700px) {
-      #about .about-grid { grid-template-columns: 1fr; }
+      #about .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       nav { display: none; }
     }
+ 
+    .about-left {
+      position: sticky;
+      top: 6rem;
+    }
+    .about-left h2 {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--color-text);
+    }
+    .about-left .about-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1.75rem;
+      display: block;
+    }
+    .about-left .about-location {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .about-left .about-location svg {
+      flex-shrink: 0;
+      color: var(--color-accent);
+    }
+    .about-stat-row {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .about-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .about-stat strong {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .about-stat span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+ 
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
     .about-text {
-      font-size: 1rem;
-      line-height: 1.75;
-      text-align: justify;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.88rem;
+      line-height: 1.85;
+      color: var(--color-text);
+      opacity: 0.82;
     }
     .about-text p + p { margin-top: 1rem; }
     .about-highlight {
       color: var(--color-accent);
       font-style: italic;
     }
-    .about-left {
-      text-align: center;
-    }
-    .about-left h2 {
-      font-size: clamp(1.6rem, 3vw, 2rem);
-      font-weight: 400;
-      line-height: 1.3;
-      margin-bottom: 2rem;
+ 
+    .skills-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 0.75rem;
     }
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.5rem;
+      gap: 0.45rem;
     }
     .skill-tag {
-      font-family: 'Courier New', monospace;
-      font-size: 0.75rem;
-      padding: 0.25rem 0.7rem;
-      border: 1px solid var(--color-accent);
-      border-radius: 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--color-border);
+      border-radius: 1.5rem;
+      color: var(--color-text-muted);
+      background: var(--color-bg);
+      transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
+      letter-spacing: 0.03em;
+      cursor: default;
+    }
+    .skill-tag:hover {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .skill-tag.featured {
+      border-color: var(--color-accent);
       color: var(--color-accent);
       background: var(--color-accent-soft);
-      transition: all 0.2s;
     }
-    .skill-tag:hover { background: var(--color-accent); color: white; }
+    .skill-tag.featured:hover {
+      background: var(--color-accent);
+      color: #fff;
+    }
+ 
+    /* ── About contact bar ── */
+    .about-contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+ 
+    /* ── Reveal on scroll ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* ── Timeline / Parcours ── */
     #parcours { background: transparent; }
@@ -624,106 +836,130 @@
 </head>
 <body>
 
-  <!-- Particles -->
+   <!-- Particles -->
   <div id="particles-bg"></div>
-
+ 
   <!-- Theme toggle -->
   <div class="theme-toggle">
     <input type="checkbox" id="theme-toggle-input">
     <label for="theme-toggle-input">
-      <svg id="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      <svg id="icon-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
       </svg>
-      <svg id="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg id="icon-moon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
       </svg>
     </label>
   </div>
-
+ 
   <!-- Nav -->
   <nav>
-    <a href="#hero">Home</a>
-    <a href="#about">about</a>
-    <a href="#formation">formation</a>
-    <a href="#parcours">parcours</a>
-    <a href="#certifications">certifs</a>
-    <a href="#contact">contact</a>
+    <a href="#hero" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#formation">Formation</a>
+    <a href="#parcours">Parcours</a>
+    <a href="#certifications">Certifs</a>
+    <a href="#contact">Contact</a>
   </nav>
-
   <!-- ═══════════════════════════════════════════ HERO ═══ -->
 <!-- ═══════════════════════════════════════════ HERO ═══ -->
-<section id="hero">
-  <div id="hero-image" aria-hidden="true"></div>
-  <div id="hero-overlay" aria-hidden="true"></div>
-  <div id="hero-glow" aria-hidden="true"></div>
-
-  <div class="hero-content">
-    <div class="hero-bg-title">
-      Forward Deployed Engineer
-    </div>
-
-    <h1 class="hero-name">Ali El Baha</h1>
-
-    <!-- skills.py moved here -->
+  <section id="hero">
+    <div id="hero-image" aria-hidden="true"></div>
+    <div id="hero-overlay" aria-hidden="true"></div>
+    <div id="hero-glow" aria-hidden="true"></div>
+ 
+    <span class="hero-bg-title" aria-hidden="true"></span>
+ 
+    <div class="hero-content">
+      <p class="hero-eyebrow">Portfolio — 2025</p>
+ 
+      <h1 class="hero-name">Ali El Baha</h1>
+ 
+      <p class="hero-subtitle">AI Consultant  &amp; Forward Deployed Engineer</p>
+ 
       <div class="code-window">
         <div class="code-header">
           <span class="dot red"></span>
           <span class="dot yellow"></span>
           <span class="dot green"></span>
-          <span class="code-filename">skills.py</span>
+          <span class="code-filename"></span>
         </div>
         <div class="code-body">
           <span id="skill-prompt">&gt;&gt;&gt; </span>
           <span id="skill-prefix">Je </span><span id="skill-dyn"></span><span id="skill-cursor"></span>
         </div>
       </div>
+ 
+      <div class="hero-links">
+        <a href="#about" class="hero-link primary">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          À propos
+        </a>
+        <a href="#contact" class="hero-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Contact
+        </a>
+        <a href="#" class="hero-link" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
     </div>
-
-
-  </div>
-</section>
+ 
+    <div class="scroll-cue" aria-hidden="true">
+      <span>Scroll</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </section>
 
   <!-- ═══════════════════════════════════════════ ABOUT ═══ -->
   <section id="about">
-    <div class="hero-links">
+    <div class="section-inner">
+ 
+      <div class="about-contact-bar reveal">
         <a href="mailto:ali.elbaha@hotmail.com" class="hero-link">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
             <polyline points="22,6 12,13 2,6"/>
           </svg>
           ali.elbaha@hotmail.com
         </a>
-        <a href="tel:+33 6 05 73 95 44" class="hero-link">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <a href="tel:+33605739544" class="hero-link">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.1 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
           </svg>
           +33 6 05 73 95 44
         </a>
-        <a href="https://www.linkedin.com/in/alielbaha/" class="hero-link" title="LinkedIn">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+        <a href="https://www.linkedin.com/in/alielbaha/" class="hero-link" target="_blank" rel="noopener">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24">
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11.75 20h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.783 1.75-1.75 1.75zm13.25 12.268h-3v-5.604c0-1.337-.026-3.063-1.865-3.063-1.865 0-2.151 1.455-2.151 2.961v5.706h-3v-11h2.885v1.5h.041c.402-.761 1.382-1.563 2.845-1.563 3.041 0 3.604 2.002 3.604 4.604v6.459z"/>
           </svg>
           LinkedIn
         </a>
       </div>
-
-
-
-    <div class="section-inner">
-      &nbsp; &nbsp; <h2 class="section-title reveal">À propos<span class="accent">.</span></h2> 
+ 
+      <h2 class="section-title reveal">À propos<span class="accent">.</span></h2>
+ 
       <div class="about-grid">
         <div class="about-left reveal">
-          <h2>Analyser<span style="color:var(--color-accent)">,</span><br>Modéliser<span style="color:var(--color-accent)">,</span><br>Prédire<span style="color:var(--color-accent)">,</span><br>Déployer<span style="color:var(--color-accent)">.</span></h2>
-          <div class="skills-grid">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">TensorFlow</span>
-            <span class="skill-tag">LangChain</span>
+          <h2>Analyser<span class="accent">,</span><br>Modéliser<span class="accent">,</span><br>Prédire<span class="accent">,</span><br>Déployer<span class="accent">.</span></h2>
+          <div class="skills-grid" style="margin-top:1.75rem;">
+            <span class="skill-tag featured">Python</span>
+            <span class="skill-tag featured">PyTorch</span>
+            <span class="skill-tag featured">TensorFlow</span>
+            <span class="skill-tag featured">LangChain</span>
             <span class="skill-tag">LangGraph</span>
-            <span class="skill-tag">RAG</span>
+            <span class="skill-tag featured">RAG</span>
             <span class="skill-tag">Scikit-learn</span>
             <span class="skill-tag">SQL</span>
             <span class="skill-tag">AWS</span>
@@ -732,18 +968,22 @@
             <span class="skill-tag">Git</span>
           </div>
         </div>
-        <div class="about-text reveal">
-          <p>
-            Élève-ingénieur en Data Science à <span class="about-highlight">Centrale Casablanca</span>, avec une année d'échange à <span class="about-highlight">CentraleSupélec</span>. Je combine rigueur mathématique et sens de l'applicatif pour concevoir des systèmes d'IA <u>fiables</u> et <u>déployables</u>.
-          </p>
-          <p>
-            Spécialisé en <span class="about-highlight">IA agentique et deep learning</span>, je conçois et déploie des assistants agentiques ainsi que des modèles de conformité, de détection d’anomalies et de maintenance prédictive. J’interviens dans les secteurs maritime, bancaire, énergétique et de l’innovation, en combinant recherche opérationnelle, industrialisation des modèles IA et collaboration avec les équipes métiers pour transformer des enjeux opérationnels en solutions automatisées.
-          </p>
-          <p>
-            Fort d'expériences chez <span class="about-highlight">Société Générale</span>, <span class="about-highlight">Louis Dreyfus Armateurs</span> et au <span class="about-highlight">Laboratoire de Mécanique Paris-Saclay</span>, je recherche un <span class="about-highlight">CDI</span> en ingénierie de l'IA.
-          </p>
+ 
+        <div class="about-right reveal">
+          <div class="about-text">
+            <p>
+              Élève-ingénieur en Data Science à <span class="about-highlight">Centrale Casablanca</span>, avec une année d'échange à <span class="about-highlight">CentraleSupélec</span>. Je combine rigueur mathématique et sens de l'applicatif pour concevoir des systèmes d'IA <u>fiables</u> et <u>déployables</u>.
+            </p>
+            <p>
+              Spécialisé en <span class="about-highlight">IA agentique et deep learning</span>, je conçois et déploie des assistants agentiques ainsi que des modèles de conformité, de détection d'anomalies et de maintenance prédictive. J'interviens dans les secteurs maritime, bancaire, énergétique et de l'innovation, en combinant recherche opérationnelle, industrialisation des modèles IA et collaboration avec les équipes métiers pour transformer des enjeux opérationnels en solutions automatisées.
+            </p>
+            <p>
+              Fort d'expériences chez <span class="about-highlight">Société Générale</span>, <span class="about-highlight">Louis Dreyfus Armateurs</span> et au <span class="about-highlight">Laboratoire de Mécanique Paris-Saclay</span>, je recherche un <span class="about-highlight">stage de fin d'études</span> pour mettre mes compétences au service d'enjeux métier concrets.
+            </p>
+          </div>
         </div>
       </div>
+ 
     </div>
   </section>
 
