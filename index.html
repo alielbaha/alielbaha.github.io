@@ -187,9 +187,11 @@
     /* ── About ─────────────────────────────── */
     #about{background:var(--bg-alt)}
     .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3.6rem;align-items:start}
+    .about-grid>div:first-child{container-type:inline-size}
     .about-h{
-      font-family:var(--font-display);font-size:clamp(1.7rem,3vw,2.3rem);font-weight:500;
+      font-family:var(--font-display);font-size:clamp(2rem,4.2cqw,2.3rem);font-weight:500;
       letter-spacing:-.02em;line-height:1.22;margin-bottom:1.4rem;color:var(--text);
+      white-space:nowrap;
     }
     .about-h em{color:var(--accent);font-style:italic}
     .about-text{font-size:.94rem;line-height:1.85;color:var(--text);opacity:.9}
@@ -236,6 +238,19 @@
     .proj-art .label-accent{font-family:var(--font-mono);font-size:9px;letter-spacing:.04em;fill:var(--accent)}
     .proj-art .serif{font-family:var(--font-display);fill:var(--accent);opacity:.5}
     .proj-art .contour{fill:none;stroke:var(--border);stroke-width:1}
+    .proj-art .fine{fill:none;stroke:var(--border);stroke-width:1}
+    .proj-art .dot2{fill:var(--text);opacity:.55}
+    .proj-art .pulse{transform-box:fill-box;transform-origin:center;animation:apPulse 2.4s ease-in-out infinite}
+    .proj-art .flow{animation:apFlow 2.6s linear infinite}
+    .proj-art .flow-slow{animation:apFlow 4.2s linear infinite}
+    .proj-art .spin{transform-box:fill-box;transform-origin:center;animation:apSpin 9s linear infinite}
+    .proj-art .blink{animation:apBlink 1.3s ease-in-out infinite}
+    .proj-art .rock{transform-box:fill-box;transform-origin:top center;animation:apRock 3.6s ease-in-out infinite}
+    @keyframes apPulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
+    @keyframes apFlow{to{stroke-dashoffset:-40}}
+    @keyframes apSpin{to{transform:rotate(360deg)}}
+    @keyframes apBlink{0%,100%{opacity:.2}50%{opacity:1}}
+    @keyframes apRock{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
     .p-body{padding:1.3rem 1.4rem 1.4rem;display:flex;flex-direction:column;gap:.65rem;flex:1}
     .p-meta{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
     .p-title{font-family:var(--font-display);font-size:1.14rem;font-weight:600;letter-spacing:-.01em;line-height:1.28}
@@ -419,7 +434,7 @@
       <h2 class="title reveal">About<em>.</em></h2>
       <div class="about-grid">
         <div class="reveal">
-          <h3 class="about-h">Analyze, model, predict, <em>deploy.</em></h3>
+          <h2 class="about-h">Analyze, modelize, predict, <em>deploy.</em></h2>
           <div class="about-text">
             <p>Centralien engineer (<span class="about-highlight">Centrale Casablanca</span>, exchange at <span class="about-highlight">CentraleSupélec</span>) specialized in <span class="about-highlight">MLOps</span>. I combine mathematical rigor with a practical, applied mindset to design AI systems that are reliable and deployable.</p>
             <p>Hands-on experience in AI systems integration for industrial and financial clients: predictive maintenance, agentic AI, anomaly detection, banking compliance, and production-deployed RAG assistants.</p>
@@ -460,56 +475,84 @@
       <div class="eyebrow reveal">02 — Selection</div>
       <h2 class="title reveal">Featured Projects<em>.</em></h2>
 
-      <article class="project featured reveal">
+      <div class="project-grid reveal">
+        <article class="project-card">
         <div class="p-media">
-          <svg class="proj-art" viewBox="0 0 400 260" role="img" aria-label="Dashboard illustration: a central orchestrator agent linked to six specialist agents, above a rising financial signal chart">
-            <defs>
-              <radialGradient id="washFin" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="var(--accent)" stop-opacity=".22"/>
-                <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
-              </radialGradient>
-              <linearGradient id="areaFin" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="var(--accent)" stop-opacity=".28"/>
-                <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
-              </linearGradient>
-              <filter id="glowFin" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="4" result="b"/>
-                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-              <pattern id="gridFin" width="22" height="22" patternUnits="userSpaceOnUse">
-                <circle class="grid-dot" cx="1" cy="1" r="1"/>
-              </pattern>
-            </defs>
-            <rect class="bg" width="400" height="260"/>
-            <rect width="400" height="260" fill="url(#gridFin)" opacity=".6"/>
-            <circle cx="200" cy="95" r="150" fill="url(#washFin)"/>
-            <text class="label" x="26" y="30">AGENTS · LIVE</text>
-            <path class="line-soft" d="M200,40 L255,65 L255,125 L200,150 L145,125 L145,65 Z"/>
-            <line class="line" x1="200" y1="95" x2="200" y2="40"/>
-            <line class="line" x1="200" y1="95" x2="255" y2="65"/>
-            <line class="line" x1="200" y1="95" x2="255" y2="125"/>
-            <line class="line" x1="200" y1="95" x2="200" y2="150"/>
-            <line class="line" x1="200" y1="95" x2="145" y2="125"/>
-            <line class="line" x1="200" y1="95" x2="145" y2="65"/>
-            <circle class="dot" cx="200" cy="40" r="4.5"/>
-            <circle class="dot" cx="255" cy="65" r="4.5"/>
-            <circle class="dot" cx="255" cy="125" r="4.5"/>
-            <circle class="dot" cx="200" cy="150" r="4.5"/>
-            <circle class="dot" cx="145" cy="125" r="4.5"/>
-            <circle class="dot" cx="145" cy="65" r="4.5"/>
-            <circle class="dot" cx="200" cy="95" r="9" filter="url(#glowFin)"/>
-            <line class="line-soft" x1="55" y1="172" x2="345" y2="172" stroke-dasharray="1 5"/>
-            <path d="M60,225 L110,210 L160,218 L210,178 L260,190 L340,150 L340,232 L60,232 Z" fill="url(#areaFin)"/>
-            <polyline class="line" points="60,225 110,210 160,218 210,178 260,190 340,150"/>
-            <circle class="dot" cx="60" cy="225" r="3"/>
-            <circle class="dot" cx="110" cy="210" r="3"/>
-            <circle class="dot" cx="160" cy="218" r="3"/>
-            <circle class="dot" cx="210" cy="178" r="3"/>
-            <circle class="dot" cx="260" cy="190" r="3"/>
-            <circle class="dot" cx="340" cy="150" r="3.5" filter="url(#glowFin)"/>
-            <text class="label-accent" x="292" y="140">▲ 18.2%</text>
-            <text class="label" x="60" y="248">SIGNAL</text>
-          </svg>
+          <svg class="proj-art" viewBox="0 0 400 260" role="img" aria-label="A central orchestrator agent dispatching to fundamentals and sentiment analysis agents, feeding a rising recommendation signal chart">
+  <defs>
+    <radialGradient id="wash1" cx="50%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="var(--accent)" stop-opacity=".16"/>
+      <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="area1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--accent)" stop-opacity=".25"/>
+      <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow1" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid1" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle class="grid-dot" cx="1" cy="1" r="1"/>
+    </pattern>
+  </defs>
+ 
+  <rect class="bg" width="400" height="260"/>
+  <rect width="400" height="260" fill="url(#grid1)" opacity=".5"/>
+  <circle cx="200" cy="86" r="130" fill="url(#wash1)"/>
+ 
+  <text class="label" x="24" y="27">ORCHESTRATION</text>
+  <line class="fine" x1="24" y1="36" x2="104" y2="36"/>
+ 
+  <!-- Orchestrator node -->
+  <circle class="line" cx="200" cy="76" r="15"/>
+  <circle class="dot pulse" cx="200" cy="76" r="4" filter="url(#glow1)"/>
+  <path class="line-soft" d="M193 76h-4M207 76h4M200 69v-4M200 83v4" opacity=".6"/>
+ 
+  <!-- Two branch lines to specialist agents -->
+  <path class="line" d="M188 84 C150 100 120 100 96 118" />
+  <path class="line" d="M212 84 C250 100 280 100 304 118" />
+  <path class="line-soft flow" d="M188 84 C150 100 120 100 96 118" stroke-dasharray="2 6" opacity=".7"/>
+  <path class="line-soft flow" d="M212 84 C250 100 280 100 304 118" stroke-dasharray="2 6" opacity=".7"/>
+ 
+  <!-- Fundamentals agent -->
+  <g transform="translate(60 118)">
+    <rect class="line" x="0" y="0" width="72" height="44" rx="8"/>
+    <line class="fine" x1="10" y1="14" x2="62" y2="14"/>
+    <rect class="line-soft" x="10" y="21" width="14" height="14"/>
+    <rect class="line-soft" x="27" y="26" width="14" height="9"/>
+    <rect class="line-soft" x="44" y="18" width="14" height="17"/>
+    <text class="label" x="0" y="-6">FUNDAMENTALS</text>
+  </g>
+ 
+  <!-- Sentiment agent -->
+  <g transform="translate(268 118)">
+    <rect class="line" x="0" y="0" width="72" height="44" rx="8"/>
+    <path class="line-soft" d="M10 30 Q18 14 26 26 T42 20 T58 30" />
+    <circle class="dot" cx="10" cy="30" r="2"/>
+    <circle class="dot" cx="26" cy="26" r="2"/>
+    <circle class="dot" cx="42" cy="20" r="2"/>
+    <circle class="dot pulse" cx="58" cy="30" r="2.4"/>
+    <text class="label" x="0" y="-6">SENTIMENT</text>
+  </g>
+ 
+  <!-- Convergence into signal -->
+  <path class="line-soft" d="M96 162 C120 182 160 190 200 190 C240 190 280 182 304 162" stroke-dasharray="1 5" opacity=".5"/>
+  <line class="fine" x1="200" y1="190" x2="200" y2="200"/>
+ 
+  <line class="line-soft" x1="40" y1="204" x2="360" y2="204" stroke-dasharray="1 5" opacity=".4"/>
+ 
+  <!-- Recommendation signal chart -->
+  <path d="M50 244 L100 230 L150 236 L200 206 L250 214 L310 178 L350 156 L350 250 L50 250 Z" fill="url(#area1)"/>
+  <polyline class="line-accent" points="50,244 100,230 150,236 200,206 250,214 310,178 350,156"/>
+  <circle class="dot" cx="50" cy="244" r="2.6"/>
+  <circle class="dot" cx="150" cy="236" r="2.6"/>
+  <circle class="dot" cx="250" cy="214" r="2.6"/>
+  <circle class="dot pulse" cx="350" cy="156" r="3.4" filter="url(#glow1)"/>
+ 
+  <text class="label-accent" x="292" y="146">▲ 18.2%</text>
+  <text class="label" x="40" y="222">RECOMMENDATION</text>
+</svg>
         </div>
         <div class="p-body">
           <span class="p-meta">Personal project</span>
@@ -521,53 +564,83 @@
             <a class="p-link" href="https://github.com/alielbaha" target="_blank" rel="noopener">Source code →</a>
           </div>
         </div>
-      </article>
+        </article>
 
-      <div class="project-grid reveal">
         <article class="project-card">
           <div class="p-media">
-            <svg class="proj-art" viewBox="0 0 400 260" role="img" aria-label="A seven-node graph with outward-bowed curved edges and inner spokes, illustrating Forman-Ricci geometric curvature">
-              <defs>
-                <radialGradient id="washGnn" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="var(--accent)" stop-opacity=".2"/>
-                  <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
-                </radialGradient>
-                <filter id="glowGnn" x="-60%" y="-60%" width="220%" height="220%">
-                  <feGaussianBlur stdDeviation="4" result="b"/>
-                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-                <pattern id="gridGnn" width="22" height="22" patternUnits="userSpaceOnUse">
-                  <circle class="grid-dot" cx="1" cy="1" r="1"/>
-                </pattern>
-              </defs>
-              <rect class="bg" width="400" height="260"/>
-              <rect width="400" height="260" fill="url(#gridGnn)" opacity=".6"/>
-              <circle cx="200" cy="140" r="140" fill="url(#washGnn)"/>
-              <circle class="contour" cx="200" cy="140" r="42"/>
-              <circle class="contour" cx="200" cy="140" r="74"/>
-              <circle class="contour" cx="200" cy="140" r="106"/>
-              <text class="label" x="26" y="30">κ · CURVATURE</text>
-              <path class="line" d="M120,95 Q165,50 210,55"/>
-              <path class="line" d="M210,55 Q260,45 295,90"/>
-              <path class="line" d="M295,90 Q330,120 330,165"/>
-              <path class="line" d="M330,165 Q300,195 250,210"/>
-              <path class="line" d="M250,210 Q200,236 150,210"/>
-              <path class="line" d="M150,210 Q100,195 75,165"/>
-              <path class="line" d="M75,165 Q80,120 120,95"/>
-              <path class="line-soft" d="M200,140 Q160,120 120,95"/>
-              <path class="line-soft" d="M200,140 Q250,110 295,90"/>
-              <path class="line-soft" d="M200,140 Q225,180 250,210"/>
-              <path class="line-soft" d="M200,140 Q135,155 75,165"/>
-              <circle class="dot" cx="120" cy="95" r="5.5"/>
-              <circle class="dot" cx="210" cy="55" r="5.5"/>
-              <circle class="dot" cx="295" cy="90" r="5.5"/>
-              <circle class="dot" cx="330" cy="165" r="5.5"/>
-              <circle class="dot" cx="250" cy="210" r="5.5"/>
-              <circle class="dot" cx="150" cy="210" r="5.5"/>
-              <circle class="dot" cx="75" cy="165" r="5.5"/>
-              <circle class="dot" cx="200" cy="140" r="8" filter="url(#glowGnn)"/>
-              <text class="serif" x="316" y="238" style="font-size:38px;font-style:italic">κ</text>
-            </svg>
+            <svg class="proj-art" viewBox="0 0 400 260" role="img" aria-label="A graph of nodes with curved edges labeled by positive and negative Forman-Ricci curvature values, feeding a gated convolution">
+  <defs>
+    <radialGradient id="wash2" cx="34%" cy="46%" r="55%">
+      <stop offset="0%" stop-color="var(--accent)" stop-opacity=".16"/>
+      <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow2" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid2" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle class="grid-dot" cx="1" cy="1" r="1"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="400" height="260"/>
+  <rect width="400" height="260" fill="url(#grid2)" opacity=".5"/>
+  <circle cx="150" cy="120" r="140" fill="url(#wash2)"/>
+
+  <text class="label" x="24" y="27">FORMAN–RICCI CURVATURE</text>
+  <line class="fine" x1="24" y1="36" x2="150" y2="36"/>
+
+  <!-- Graph, positioned left two-thirds -->
+  <g transform="translate(10 40)">
+    <!-- edges: bowed outward for +curvature, bowed inward for -curvature -->
+    <path class="line" d="M60 40 Q100 10 148 32" style="stroke-width:2.6"/>
+    <path class="line" d="M148 32 Q200 46 210 96" style="stroke-width:1.1"/>
+    <path class="line" d="M210 96 Q188 140 140 156" style="stroke-width:2.2"/>
+    <path class="line" d="M140 156 Q90 172 48 148" style="stroke-width:1.6"/>
+    <path class="line" d="M48 148 Q18 110 60 40" style="stroke-width:2.9"/>
+    <path class="line" d="M60 40 Q120 70 140 156" style="stroke-width:1" opacity=".55"/>
+
+    <!-- flow pulses along two edges -->
+    <path class="line-accent flow" d="M60 40 Q100 10 148 32" stroke-dasharray="2 7" opacity=".8"/>
+    <path class="line-accent flow" d="M48 148 Q18 110 60 40" stroke-dasharray="2 7" opacity=".8"/>
+
+    <!-- curvature labels -->
+    <text class="label-accent" x="88" y="14">+0.6</text>
+    <text class="label" x="212" y="66">−0.2</text>
+    <text class="label-accent" x="50" y="176">+0.4</text>
+
+    <!-- nodes -->
+    <circle class="dot pulse" cx="60" cy="40" r="5.5" filter="url(#glow2)"/>
+    <circle class="dot" cx="148" cy="32" r="4.5"/>
+    <circle class="dot" cx="210" cy="96" r="4"/>
+    <circle class="dot" cx="140" cy="156" r="5"/>
+    <circle class="dot" cx="48" cy="148" r="4.5"/>
+  </g>
+
+  <!-- Divider -->
+  <line class="fine" x1="256" y1="46" x2="256" y2="214" opacity=".4"/>
+
+  <!-- Curvature-gated channel routing, right column -->
+  <text class="label" x="272" y="60">GATED ROUTING</text>
+  <g transform="translate(272 74)">
+    <rect class="line-soft" x="0" y="0" width="96" height="22" rx="5"/>
+    <text class="label" x="8" y="14" style="font-size:7px">HIGH κ → GCN</text>
+
+    <path class="line-soft" d="M48 22 v14" stroke-dasharray="1 4"/>
+
+    <rect class="line-soft" x="0" y="42" width="96" height="22" rx="5"/>
+    <text class="label" x="8" y="56" style="font-size:7px">LOW κ → MLP</text>
+
+    <path class="line-soft" d="M48 64 v14" stroke-dasharray="1 4"/>
+
+    <rect class="line" x="0" y="84" width="96" height="26" rx="6"/>
+    <text class="label-accent" x="8" y="101" style="font-size:7px">FUSED OUTPUT</text>
+    <circle class="dot pulse" cx="88" cy="97" r="3" filter="url(#glow2)"/>
+  </g>
+
+  <text class="serif" x="330" y="238" style="font-size:34px;font-style:italic">κ</text>
+  <text class="label" x="24" y="238">CORA · CHAMELEON</text>
+</svg>
           </div>
           <div class="p-body">
             <span class="p-meta">Research</span>
@@ -604,20 +677,31 @@
               <text class="label" x="290" y="34">ROLES</text>
               <line class="line-soft" x1="90" y1="95" x2="310" y2="70" stroke-dasharray="1 5"/>
               <line class="line-soft" x1="90" y1="135" x2="310" y2="215" stroke-dasharray="1 5"/>
-              <line class="line" x1="90" y1="55" x2="310" y2="70"/>
+              <line class="line flow" x1="90" y1="55" x2="310" y2="70" stroke-dasharray="4 5"/>
               <line class="line" x1="90" y1="135" x2="310" y2="120"/>
               <line class="line" x1="90" y1="175" x2="310" y2="170"/>
-              <line class="line" x1="90" y1="215" x2="310" y2="215"/>
-              <circle class="dot" cx="90" cy="55" r="5.5" filter="url(#glowAts)"/>
+              <line class="line-soft" x1="90" y1="215" x2="310" y2="215" opacity=".65"/>
+              <g class="dot2">
+                <rect x="42" y="51" width="3" height="8"/><rect x="47" y="49" width="3" height="12"/><rect x="52" y="53" width="3" height="4"/>
+                <rect x="42" y="91" width="3" height="6" opacity=".7"/><rect x="47" y="88" width="3" height="9" opacity=".7"/><rect x="52" y="92" width="3" height="5" opacity=".7"/>
+                <rect x="42" y="131" width="3" height="10" opacity=".7"/><rect x="47" y="128" width="3" height="7" opacity=".7"/><rect x="52" y="133" width="3" height="4" opacity=".7"/>
+                <rect x="42" y="171" width="3" height="5" opacity=".6"/><rect x="47" y="169" width="3" height="11" opacity=".6"/><rect x="52" y="173" width="3" height="4" opacity=".6"/>
+                <rect x="42" y="211" width="3" height="8" opacity=".5"/><rect x="47" y="209" width="3" height="6" opacity=".5"/><rect x="52" y="213" width="3" height="4" opacity=".5"/>
+              </g>
+              <circle class="dot pulse" cx="90" cy="55" r="5.5" filter="url(#glowAts)"/>
               <circle class="dot" cx="90" cy="95" r="4.5"/>
               <circle class="dot" cx="90" cy="135" r="4.5"/>
               <circle class="dot" cx="90" cy="175" r="4.5"/>
               <circle class="dot" cx="90" cy="215" r="4.5"/>
-              <circle class="dot" cx="310" cy="70" r="6" filter="url(#glowAts)"/>
+              <circle class="dot pulse" cx="310" cy="70" r="6" filter="url(#glowAts)"/>
               <circle class="dot" cx="310" cy="120" r="5.5"/>
               <circle class="dot" cx="310" cy="170" r="5.5"/>
-              <circle class="dot" cx="310" cy="215" r="5.5"/>
+              <circle class="dot" cx="310" cy="215" r="4.2" opacity=".6"/>
               <text class="label-accent" x="163" y="52">96%</text>
+              <text class="label" x="175" y="112">89%</text>
+              <text class="label" x="175" y="163">74%</text>
+              <text class="label" x="168" y="230">51%</text>
+              <text class="label" x="176" y="248">SBERT · COSINE SIM</text>
             </svg>
           </div>
           <div class="p-body">
@@ -634,44 +718,201 @@
 
         <article class="project-card">
           <div class="p-media">
-            <svg class="proj-art" viewBox="0 0 400 260" role="img" aria-label="Chat bubble retrieving answers from a maintenance knowledge base through a secure link, over a maritime wave line">
-              <defs>
-                <radialGradient id="washRag" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="var(--accent)" stop-opacity=".2"/>
-                  <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
-                </radialGradient>
-                <filter id="glowRag" x="-60%" y="-60%" width="220%" height="220%">
-                  <feGaussianBlur stdDeviation="3.5" result="b"/>
-                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-                <pattern id="gridRag" width="22" height="22" patternUnits="userSpaceOnUse">
-                  <circle class="grid-dot" cx="1" cy="1" r="1"/>
-                </pattern>
-                <marker id="arrowRag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                  <path d="M0,0 L10,5 L0,10 Z" fill="var(--accent)"/>
-                </marker>
-              </defs>
-              <rect class="bg" width="400" height="260"/>
-              <rect width="400" height="260" fill="url(#gridRag)" opacity=".6"/>
-              <circle cx="150" cy="70" r="140" fill="url(#washRag)"/>
-              <text class="label" x="26" y="30">RAG · MARITIME</text>
-              <path class="line-soft" d="M40,205 Q80,188 120,205 T200,205 T280,205 T360,205"/>
-              <path class="line-soft" d="M40,222 Q80,238 120,222 T200,222 T280,222 T360,222" opacity=".3"/>
-              <path class="line" d="M96,68 h110 a14,14 0 0 1 14,14 v46 a14,14 0 0 1 -14,14 h-70 l-22,22 v-22 h-18 a14,14 0 0 1 -14,-14 v-46 a14,14 0 0 1 14,-14 z"/>
-              <circle class="dot" cx="133" cy="105" r="3" style="opacity:.9"/>
-              <circle class="dot" cx="151" cy="105" r="3" style="opacity:.55"/>
-              <circle class="dot" cx="169" cy="105" r="3" style="opacity:.3"/>
-              <line class="line-soft" x1="230" y1="95" x2="262" y2="95" marker-end="url(#arrowRag)"/>
-              <ellipse class="line" cx="316" cy="66" rx="30" ry="10"/>
-              <path class="line" d="M286,66 v52 a30,10 0 0 0 60,0 v-52"/>
-              <path class="line-soft" d="M286,88 a30,10 0 0 0 60,0"/>
-              <path class="line-soft" d="M286,108 a30,10 0 0 0 60,0"/>
-              <text class="label" x="286" y="150">KNOWLEDGE BASE</text>
-              <path class="line-soft" d="M298,180 v-10 a13,13 0 0 1 26,0 v10"/>
-              <rect class="line" x="290" y="180" width="42" height="26" rx="4" filter="url(#glowRag)"/>
-              <circle class="dot" cx="311" cy="193" r="2.5"/>
-              <text class="label-accent" x="252" y="222">NO DIRECT ACCESS</text>
-            </svg>
+ <svg class="proj-art" viewBox="0 0 400 260" role="img"
+     aria-label="Conversational RAG maintenance assistant retrieving information from a secure maritime knowledge base">
+  <defs>
+    <radialGradient id="ragGlow" cx="42%" cy="42%" r="58%">
+      <stop offset="0" stop-color="var(--accent)" stop-opacity=".18"/>
+      <stop offset=".55" stop-color="var(--accent)" stop-opacity=".055"/>
+      <stop offset="1" stop-color="var(--accent)" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="ragPanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="var(--accent)" stop-opacity=".09"/>
+      <stop offset="1" stop-color="var(--accent)" stop-opacity=".015"/>
+    </linearGradient>
+
+    <filter id="ragBlur" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+
+    <filter id="ragGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <pattern id="ragGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" class="grid-dot" opacity=".32"/>
+      <circle cx="1" cy="1" r=".8" class="grid-dot"/>
+    </pattern>
+
+    <marker id="ragArrow" viewBox="0 0 10 10"
+            refX="8" refY="5" markerWidth="6" markerHeight="6"
+            orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="var(--accent)"/>
+    </marker>
+
+    <clipPath id="ragWaveClip">
+      <rect x="0" y="176" width="400" height="84"/>
+    </clipPath>
+  </defs>
+
+  <!-- Base -->
+  <rect class="bg" width="400" height="260"/>
+  <rect width="400" height="260" fill="url(#ragGrid)" opacity=".5"/>
+  <circle cx="160" cy="86" r="150" fill="url(#ragGlow)"/>
+
+  <!-- Header -->
+  <text class="label" x="24" y="27">RAG / MARITIME</text>
+  <line class="fine" x1="24" y1="36" x2="110" y2="36"/>
+  <circle class="dot pulse" cx="116" cy="36" r="2"/>
+
+  <!-- Ambient orbital lines -->
+  <circle cx="151" cy="105" r="82"
+          fill="none" class="line-soft"
+          stroke-dasharray="1 7" opacity=".35"/>
+  <circle cx="151" cy="105" r="100"
+          fill="none" class="fine"
+          stroke-dasharray="1 11" opacity=".3"/>
+
+  <!-- User / crew node -->
+  <g transform="translate(38 73)">
+    <circle cx="17" cy="17" r="17" fill="url(#ragPanel)"
+            class="line-soft"/>
+    <circle cx="17" cy="12" r="4" class="line"/>
+    <path class="line" d="M9 25q8-8 16 0"/>
+    <text class="label" x="0" y="47">CREW QUERY</text>
+  </g>
+
+  <!-- Main conversational panel -->
+  <g>
+    <rect x="82" y="59" width="139" height="91" rx="15"
+          fill="url(#ragPanel)" class="line"/>
+
+    <!-- top bar -->
+    <circle class="dot" cx="96" cy="73" r="2"/>
+    <circle class="fine" cx="103" cy="73" r="2"/>
+    <circle class="fine" cx="110" cy="73" r="2"/>
+
+    <path class="fine" d="M123 73h70"/>
+
+    <!-- user question -->
+    <rect x="101" y="84" width="94" height="19" rx="7"
+          class="line-soft" opacity=".65"/>
+    <line class="fine" x1="110" y1="94" x2="167" y2="94"/>
+    <line class="fine" x1="110" y1="98" x2="151" y2="98"/>
+
+    <!-- AI response -->
+    <rect x="101" y="110" width="107" height="27" rx="7"
+          fill="var(--accent)" opacity=".055"
+          class="line-soft"/>
+
+    <circle class="dot pulse" cx="111" cy="120" r="2.5"/>
+    <line class="line-soft" x1="120" y1="117" x2="194" y2="117"/>
+    <line class="fine" x1="120" y1="123" x2="181" y2="123"/>
+    <line class="fine" x1="120" y1="129" x2="169" y2="129"/>
+
+    <!-- little answer indicator -->
+    <path class="line-accent"
+          d="M188 129l4 4 8-9"
+          fill="none"/>
+  </g>
+
+  <!-- Retrieval flow -->
+  <path class="line-soft"
+        d="M222 104C238 104 242 82 258 82"
+        fill="none"
+        stroke-dasharray="3 5"
+        marker-end="url(#ragArrow)"/>
+
+  <circle class="dot pulse" cx="240" cy="95" r="2"
+          filter="url(#ragGlow)"/>
+
+  <text class="label-accent" x="231" y="72">RETRIEVE</text>
+
+  <!-- Knowledge base -->
+  <g transform="translate(270 54)">
+    <!-- glow behind database -->
+    <ellipse cx="42" cy="66" rx="54" ry="48"
+             fill="var(--accent)" opacity=".035"
+             filter="url(#ragBlur)"/>
+
+    <!-- database -->
+    <ellipse cx="42" cy="13" rx="39" ry="11" class="line"/>
+    <path class="line"
+          d="M3 13v55c0 6 17 11 39 11s39-5 39-11V13"/>
+    <path class="line-soft" d="M3 31c0 6 17 11 39 11s39-5 39-11"/>
+    <path class="line-soft" d="M3 50c0 6 17 11 39 11s39-5 39-11"/>
+
+    <!-- vector marks -->
+    <circle class="dot" cx="22" cy="23" r="2"/>
+    <circle class="dot" cx="32" cy="25" r="1.5"/>
+    <circle class="dot" cx="47" cy="22" r="2"/>
+    <circle class="dot" cx="62" cy="26" r="1.5"/>
+
+    <line class="fine" x1="18" y1="36" x2="54" y2="36"/>
+    <line class="fine" x1="18" y1="41" x2="66" y2="41"/>
+
+    <text class="label" x="0" y="94">VECTOR STORE</text>
+  </g>
+
+  <!-- Secure boundary -->
+  <g transform="translate(275 158)">
+    <rect x="0" y="11" width="76" height="37" rx="7"
+          fill="url(#ragPanel)" class="line-soft"/>
+
+    <!-- lock -->
+    <path class="line"
+          d="M27 25v-6a8 8 0 0 1 16 0v6"/>
+    <rect x="24" y="25" width="22" height="15" rx="3" class="line"/>
+    <circle class="dot" cx="35" cy="32" r="2"/>
+
+    <text class="label-accent" x="52" y="27">SECURE</text>
+    <text class="label" x="52" y="38">LINK</text>
+  </g>
+
+  <!-- Semantic flow lines -->
+  <g opacity=".55">
+    <path class="fine" d="M266 177h-24v20h-27"/>
+    <circle class="dot" cx="215" cy="197" r="2"/>
+    <path class="fine" d="M266 187h-14"/>
+    <path class="fine" d="M266 197h-8"/>
+  </g>
+
+  <!-- Maritime horizon -->
+  <g clip-path="url(#ragWaveClip)">
+    <path class="line-soft"
+          d="M0 210
+             C30 194 55 194 84 210
+             S139 226 170 210
+             S225 194 256 210
+             S310 226 340 210
+             S375 195 410 209"
+          fill="none"/>
+
+    <path class="line-soft"
+          d="M0 228
+             C28 214 57 214 87 228
+             S145 242 174 228
+             S231 214 261 228
+             S318 242 349 228
+             S382 214 410 227"
+          fill="none" opacity=".35"/>
+
+    <!-- vessel silhouette -->
+    <path class="line"
+          d="M50 194h28l-5 8H56z"/>
+    <line class="fine" x1="63" y1="194" x2="63" y2="181"/>
+    <path class="fine" d="M63 182l9 5H63z"/>
+  </g>
+
+  <!-- Footer -->
+  <text class="label-accent" x="24" y="248">ETL</text>
+  <text class="label" x="47" y="248">· VECTORIZED · FAISS · INFERENCE</text>
+</svg>
           </div>
           <div class="p-body">
             <span class="p-meta">2025</span>
@@ -706,22 +947,30 @@
               <circle cx="200" cy="90" r="150" fill="url(#washLaw)"/>
               <text class="label" x="26" y="30">LEGAL · RAG</text>
               <path class="line-soft" d="M200,50 L166,16 M200,50 L200,8 M200,50 L234,16"/>
+              <g class="rock">
+                <line class="line" x1="135" y1="85" x2="265" y2="85"/>
+                <line class="line-soft" x1="170" y1="85" x2="170" y2="79"/>
+                <line class="line-soft" x1="230" y1="85" x2="230" y2="79"/>
+                <line class="line-soft flow" x1="135" y1="85" x2="115" y2="135" stroke-dasharray="2 4"/>
+                <line class="line-soft" x1="135" y1="85" x2="155" y2="135"/>
+                <path class="line" d="M108,135 a27,16 0 0 0 54,0 z"/>
+                <line class="line-soft flow" x1="265" y1="85" x2="285" y2="135" stroke-dasharray="2 4"/>
+                <line class="line-soft" x1="265" y1="85" x2="245" y2="135"/>
+                <path class="line" d="M238,135 a27,16 0 0 0 54,0 z"/>
+              </g>
               <line class="line" x1="200" y1="55" x2="200" y2="195"/>
-              <line class="line" x1="135" y1="85" x2="265" y2="85"/>
-              <line class="line-soft" x1="170" y1="85" x2="170" y2="79"/>
-              <line class="line-soft" x1="230" y1="85" x2="230" y2="79"/>
-              <line class="line-soft" x1="135" y1="85" x2="115" y2="135"/>
-              <line class="line-soft" x1="135" y1="85" x2="155" y2="135"/>
-              <path class="line" d="M108,135 a27,16 0 0 0 54,0 z"/>
-              <line class="line-soft" x1="265" y1="85" x2="245" y2="135"/>
-              <line class="line-soft" x1="265" y1="85" x2="285" y2="135"/>
-              <path class="line" d="M238,135 a27,16 0 0 0 54,0 z"/>
-              <circle class="dot" cx="200" cy="55" r="5.5" filter="url(#glowLaw)"/>
+              <circle class="dot pulse" cx="200" cy="55" r="5.5" filter="url(#glowLaw)"/>
+              <circle class="fine" cx="200" cy="150" r="16" stroke-dasharray="1 4"/>
               <path class="line" d="M170,210 h60 l-14,-15 h-32 z"/>
               <line class="line" x1="150" y1="210" x2="250" y2="210"/>
               <rect class="line-soft" x="52" y="176" width="70" height="10" rx="2"/>
+              <line class="fine" x1="58" y1="181" x2="100" y2="181"/>
               <rect class="line-soft" x="58" y="188" width="70" height="10" rx="2"/>
+              <line class="fine" x1="64" y1="193" x2="112" y2="193"/>
               <rect class="line" x="64" y="200" width="70" height="10" rx="2"/>
+              <line class="fine" x1="70" y1="205" x2="118" y2="205"/>
+              <circle class="line-soft" cx="118" cy="176" r="8"/>
+              <path class="line-soft" d="M113,182 l5,10 l5,-10"/>
               <text class="serif" x="300" y="238" style="font-size:38px;font-style:italic">§</text>
             </svg>
           </div>
@@ -759,6 +1008,7 @@
               <text class="label" x="26" y="30">VISION · DETR</text>
               <path class="contour" d="M255,150 m-46,0 a46,46 0 0 1 92,0"/>
               <path class="contour" d="M255,150 m-70,0 a70,70 0 0 1 140,0"/>
+              <path class="line-soft" d="M255,150 L255,80 A70,70 0 0 1 320,120 Z" opacity=".18" style="transform-box:view-box;transform-origin:255px 150px;animation:apSpin 9s linear infinite"/>
               <path class="line-soft" d="M185,128 L120,215 M215,128 L290,220" stroke-dasharray="1 5"/>
               <rect class="line" x="105" y="105" width="80" height="56" rx="16"/>
               <rect class="line" x="215" y="105" width="80" height="56" rx="16"/>
@@ -768,8 +1018,18 @@
               <path class="line-soft" d="M105,120 q-25,0 -30,-14"/>
               <path class="line-soft" d="M295,120 q25,0 30,-14"/>
               <path class="line-soft" d="M198,150 l6,20 l12,-4"/>
+              <rect class="line-soft" x="118" y="178" width="46" height="30" rx="6" stroke-dasharray="2 4"/>
+              <text class="label" x="141" y="216" style="text-anchor:middle;font-size:7px">0.81</text>
               <path class="line" d="M207,113 v-16 h16 M303,113 v-16 h-16 M207,153 v16 h16 M303,153 v16 h-16" filter="url(#glowCv)"/>
               <text class="label-accent" x="255" y="98">0.97</text>
+              <g transform="translate(150,238)">
+                <rect class="dot pulse" x="0" y="-6" width="3" height="12" style="animation-delay:0s"/>
+                <rect class="dot pulse" x="6" y="-10" width="3" height="20" style="animation-delay:.15s"/>
+                <rect class="dot pulse" x="12" y="-4" width="3" height="8" style="animation-delay:.3s"/>
+                <rect class="dot pulse" x="18" y="-12" width="3" height="24" style="animation-delay:.45s"/>
+                <rect class="dot pulse" x="24" y="-6" width="3" height="12" style="animation-delay:.6s"/>
+              </g>
+              <text class="label" x="184" y="242">TTS</text>
             </svg>
           </div>
           <div class="p-body">
